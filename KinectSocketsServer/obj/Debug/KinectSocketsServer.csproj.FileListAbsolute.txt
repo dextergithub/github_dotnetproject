@@ -1,1 +1,0 @@
-F:\GitHub\github_dotnetproject\KinectSocketsServer\obj\Debug\KinectSocketsServer.csprojResolveAssemblyReference.cache

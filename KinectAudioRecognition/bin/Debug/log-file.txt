@@ -1,3 +1,0 @@
-[Header]\r\n2013-04-01 21:53:24,943 [18] DEBUG default [(null)]  - Server_Receive:{"Commond":"hello","GrammarFile":"g1","NO":1,"Confidence":0,"Recognized":null}
-2013-04-01 21:53:24,943 [18] DEBUG default [(null)]  - Server_Receive:{"Commond":"hello","GrammarFile":"g1","NO":1,"Confidence":0,"Recognized":null}
-[Footer]\r\n
