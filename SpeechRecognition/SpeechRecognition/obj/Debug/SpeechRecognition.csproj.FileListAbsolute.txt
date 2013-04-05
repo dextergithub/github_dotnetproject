@@ -1,0 +1,9 @@
+F:\Kinect\SpeechRecognition\SpeechRecognition\bin\Debug\SpeechRecognition.exe.config
+F:\Kinect\SpeechRecognition\SpeechRecognition\bin\Debug\SpeechRecognition.exe
+F:\Kinect\SpeechRecognition\SpeechRecognition\bin\Debug\SpeechRecognition.pdb
+F:\Kinect\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.csprojResolveAssemblyReference.cache
+F:\Kinect\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.Form1.resources
+F:\Kinect\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.Properties.Resources.resources
+F:\Kinect\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.csproj.GenerateResource.Cache
+F:\Kinect\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.exe
+F:\Kinect\SpeechRecognition\SpeechRecognition\obj\Debug\SpeechRecognition.pdb

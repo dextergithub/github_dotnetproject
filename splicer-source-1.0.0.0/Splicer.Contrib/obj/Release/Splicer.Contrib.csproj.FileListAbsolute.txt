@@ -1,0 +1,10 @@
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\ASL - Apache Software Foundation License.txt
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\Splicer.Contrib.dll
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\Splicer.Contrib.pdb
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\Splicer.dll
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\DirectShowLib-2005.dll
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\Splicer.pdb
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\bin\Release\DirectShowLib-2005.pdb
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\obj\Release\Splicer.Contrib.csprojResolveAssemblyReference.cache
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\obj\Release\Splicer.Contrib.dll
+F:\PicToVedio\splicer-source-1.0.0.0\Splicer.Contrib\obj\Release\Splicer.Contrib.pdb

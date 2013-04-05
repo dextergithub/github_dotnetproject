@@ -1,0 +1,25 @@
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.csprojResolveAssemblyReference.cache
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.Form1.resources
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.Properties.Resources.resources
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.csproj.GenerateResource.Cache
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\Pic2Vedio.exe.config
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\Pic2Vedio.exe
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\Pic2Vedio.pdb
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\DirectShowLib-2005.dll
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\Splicer.pdb
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\DirectShowLib-2005.pdb
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.exe
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.pdb
+F:\PicToVedio\Pic2Vedio\Pic2Vedio\bin\Debug\demo\1 (1).jpg
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\bin\Debug\Pic2Vedio.exe.config
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.exe
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.pdb
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\bin\Debug\demo\1 (1).jpg
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\bin\Debug\Pic2Vedio.exe
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\bin\Debug\Pic2Vedio.pdb
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\bin\Debug\Splicer.dll
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\bin\Debug\DirectShowLib-2005.dll
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.csprojResolveAssemblyReference.cache
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.Form1.resources
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.Properties.Resources.resources
+H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.csproj.GenerateResource.Cache

@@ -1,0 +1,8 @@
+F:\Kinect\KinectAudioRecognition\SocketsClient\bin\Debug\SocketsClient.exe.config
+F:\Kinect\KinectAudioRecognition\SocketsClient\bin\Debug\SocketsClient.exe
+F:\Kinect\KinectAudioRecognition\SocketsClient\bin\Debug\SocketsClient.pdb
+F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.csprojResolveAssemblyReference.cache
+F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.SocketsTest.resources
+F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.csproj.GenerateResource.Cache
+F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.exe
+F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.pdb

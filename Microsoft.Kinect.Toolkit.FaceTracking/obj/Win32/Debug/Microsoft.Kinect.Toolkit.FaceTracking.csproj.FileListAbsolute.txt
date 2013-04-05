@@ -1,0 +1,7 @@
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\bin\x86\Debug\FaceTrackData.dll
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\bin\x86\Debug\FaceTrackLib.dll
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\bin\x86\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\bin\x86\Debug\Microsoft.Kinect.Toolkit.FaceTracking.pdb
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\obj\Win32\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\obj\Win32\Debug\Microsoft.Kinect.Toolkit.FaceTracking.pdb
+F:\Kinect\Microsoft.Kinect.Toolkit.FaceTracking\obj\Win32\Debug\Microsoft.Kinect.Toolkit.FaceTracking.csprojResolveAssemblyReference.cache

@@ -1,0 +1,17 @@
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\KinectCore.dll
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\KinectCore.pdb
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\KinectCore.csprojResolveAssemblyReference.cache
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\Interop.SpeechLib.dll
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\KinectCore.csproj.ResolveComReference.cache
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\KinectCore.Properties.Resources.resources
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\KinectCore.csproj.GenerateResource.Cache
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\KinectCore.dll
+F:\Kinect\KinectAudioRecognition\KinectCore\obj\Debug\KinectCore.pdb
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\log4net.dll
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\Newtonsoft.Json.dll
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\log4net.xml
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\Newtonsoft.Json.pdb
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\Newtonsoft.Json.xml
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\SpeechGrammar.xml
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\Grammars\SpeechGrammar.xml
+F:\Kinect\KinectAudioRecognition\KinectCore\bin\Debug\log4net.pdb
