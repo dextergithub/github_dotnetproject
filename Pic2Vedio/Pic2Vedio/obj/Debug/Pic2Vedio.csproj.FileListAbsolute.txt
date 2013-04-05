@@ -23,3 +23,9 @@ H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.csprojResolveAssemblyR
 H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.Form1.resources
 H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.Properties.Resources.resources
 H:\Develop\DotNetWorkSpaces\Pic2Vedio\obj\Debug\Pic2Vedio.csproj.GenerateResource.Cache
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.csprojResolveAssemblyReference.cache
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.Form1.resources
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.Properties.Resources.resources
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.csproj.GenerateResource.Cache
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.exe
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\obj\Debug\Pic2Vedio.pdb

@@ -10,3 +10,16 @@ F:\Kinect\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.Properties
 F:\Kinect\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.csproj.GenerateResource.Cache
 F:\Kinect\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.dll
 F:\Kinect\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.pdb
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.dll
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.pdb
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.dll.CodeAnalysisLog.xml
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.dll.lastcodeanalysissucceeded
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.csprojResolveAssemblyReference.cache
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\KinectSensorChooserUI.baml
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\KinectSensorChooserUI.g.cs
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit_MarkupCompile.cache
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.g.resources
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.Properties.Resources.resources
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.csproj.GenerateResource.Cache
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.dll
+F:\GitHub\github_dotnetproject\Microsoft.Kinect.Toolkit\obj\Debug\Microsoft.Kinect.Toolkit.pdb

@@ -1,0 +1,1 @@
+F:\GitHub\github_dotnetproject\splicer-source-1.0.0.0\Splicer.Tests\obj\x86\Debug\Splicer.Tests.csprojResolveAssemblyReference.cache

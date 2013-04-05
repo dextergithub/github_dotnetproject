@@ -6,3 +6,10 @@ F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.SocketsTe
 F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.csproj.GenerateResource.Cache
 F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.exe
 F:\Kinect\KinectAudioRecognition\SocketsClient\obj\Debug\SocketsClient.pdb
+F:\GitHub\github_dotnetproject\SocketsClient\bin\Debug\SocketsClient.exe.config
+F:\GitHub\github_dotnetproject\SocketsClient\bin\Debug\SocketsClient.exe
+F:\GitHub\github_dotnetproject\SocketsClient\bin\Debug\SocketsClient.pdb
+F:\GitHub\github_dotnetproject\SocketsClient\obj\Debug\SocketsClient.SocketsTest.resources
+F:\GitHub\github_dotnetproject\SocketsClient\obj\Debug\SocketsClient.csproj.GenerateResource.Cache
+F:\GitHub\github_dotnetproject\SocketsClient\obj\Debug\SocketsClient.exe
+F:\GitHub\github_dotnetproject\SocketsClient\obj\Debug\SocketsClient.pdb

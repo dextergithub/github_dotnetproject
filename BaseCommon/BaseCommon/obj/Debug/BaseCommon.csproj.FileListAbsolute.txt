@@ -8,3 +8,9 @@ F:\Workspace\BaseCommon\BaseCommon\bin\Debug\log4net.xml
 F:\Workspace\BaseCommon\BaseCommon\bin\Debug\Newtonsoft.Json.pdb
 F:\Workspace\BaseCommon\BaseCommon\bin\Debug\Newtonsoft.Json.xml
 F:\Workspace\BaseCommon\BaseCommon\obj\Debug\BaseCommon.csprojResolveAssemblyReference.cache
+F:\GitHub\github_dotnetproject\BaseCommon\BaseCommon\bin\Debug\BaseCommon.dll
+F:\GitHub\github_dotnetproject\BaseCommon\BaseCommon\bin\Debug\BaseCommon.pdb
+F:\GitHub\github_dotnetproject\BaseCommon\BaseCommon\bin\Debug\log4net.dll
+F:\GitHub\github_dotnetproject\BaseCommon\BaseCommon\bin\Debug\log4net.xml
+F:\GitHub\github_dotnetproject\BaseCommon\BaseCommon\obj\Debug\BaseCommon.dll
+F:\GitHub\github_dotnetproject\BaseCommon\BaseCommon\obj\Debug\BaseCommon.pdb
