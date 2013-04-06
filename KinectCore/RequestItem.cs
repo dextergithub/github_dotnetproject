@@ -28,6 +28,11 @@ namespace KinectCore
             return System.Text.Encoding.Default.GetBytes(txt);
         }
 
+        public byte[] SerializResult()
+        {
+            return System.Text.Encoding.Default.GetBytes("{{\"NO\":{0},\"Confidence\":{1},\"Recognized\":\"{2}\"}}".ExtFormat(this.NO ,this.Confidence,this.Recognized ));
+        }
+
         public static RequestItem Deserialize(byte[] b)
         {
             string txt = System.Text.Encoding.Default.GetString(b);

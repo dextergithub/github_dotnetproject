@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<grammar version="1.0"
+         xml:lang="en-US" 
+         root="rootRule" 
+         tag-format="semantics/1.0-literals" 
+         xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="rootRule">
+    <one-of> 
+      <item>
+        <tag>panda</tag>
+        <one-of>
+          <item> panda </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>tiger</tag>
+        <one-of>
+          <item> tiger </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>wolf</tag>
+        <one-of>
+          <item> wolf </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>dog</tag>
+        <one-of>
+          <item> dog </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>lion</tag>
+        <one-of>
+          <item> lion </item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

@@ -68,7 +68,7 @@ namespace KinectCore
             {
                 Mutex.WaitOne();
                 string strSysTime = DateTime.Now.ToString("yyyyMMddHH:mm:ss.FFF");
-                string logFullPath = LogFilePath + strSysTime.Substring(0, 10) + "_" + System.Diagnostics.Process.GetCurrentProcess().Id + ".log";
+                string logFullPath = LogFilePath + strSysTime.Substring(0, 10) + "_" + ".log";
                 string logstr = message;
 
                 if (!File.Exists(logFullPath))

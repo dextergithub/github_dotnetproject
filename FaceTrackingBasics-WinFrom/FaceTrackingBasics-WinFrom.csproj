@@ -100,7 +100,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Workspace\BaseCommon\BaseCommon\BaseCommon.csproj">
+    <ProjectReference Include="..\BaseCommon\BaseCommon\BaseCommon.csproj">
       <Project>{1304f122-e132-49f0-884f-0d4e58fc18cb}</Project>
       <Name>BaseCommon</Name>
     </ProjectReference>

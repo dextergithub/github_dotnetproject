@@ -25,13 +25,22 @@ namespace KinectAudioRecognition.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string LocalAddress {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RecognizerID {
             get {
-                return ((string)(this["LocalAddress"]));
+                return ((string)(this["RecognizerID"]));
             }
             set {
-                this["LocalAddress"] = value;
+                this["RecognizerID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UsingKinect {
+            get {
+                return ((bool)(this["UsingKinect"]));
             }
         }
     }

@@ -1,4 +1,11 @@
 ﻿using KinectCore;
+#if KINECTSDK
+using Microsoft.Speech.AudioFormat;
+using Microsoft.Speech.Recognition;
+#else
+using System.Speech.AudioFormat;
+using System.Speech.Recognition;
+#endif
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,9 +37,26 @@ namespace KinectAudioRecognition
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(Properties.Settings.Default.RecognizerID) || GetRecognizer(Properties.Settings.Default.RecognizerID)==null)
+            {
+                new SettingBox().ShowDialog();
+            }
+
+            string RecognizerID = Properties.Settings.Default.RecognizerID;
+
+            RecognizerInfo info = GetRecognizer(RecognizerID);
+
+            if (info == null)
+            {
+                Log.log.WriteDebugLog("找不到对应的识别引擎id[{0}]".ExtFormat(Properties.Settings.Default.RecognizerID));
+                MessageBox.Show("找不到对应的识别引擎id[{0}]".ExtFormat(Properties.Settings.Default.RecognizerID));
+                return;
+            }
+
             try
             {
-                audio = new KinectAudio();
+                audio = new KinectAudio(info, Properties.Settings.Default.UsingKinect);
+                audio.RecognitionEvent += audio_RecognitionEvent;
 
                 this.com_Socket.DisplayMember = "key";
                 this.com_Socket.ValueMember = "Value";
@@ -41,12 +65,25 @@ namespace KinectAudioRecognition
             {
                 Log.log.WriteErrLog("Form1_Load", ex,"");
                 MessageBox.Show(ex.Message +"\n" +ex.StackTrace);
-            }
-           
-
+            }    
         }
 
+        void audio_RecognitionEvent(byte[] buf, bool issuccess)
+        {
+            string txt = System.Text.Encoding.Default.GetString(buf);
+            if (issuccess)
+            {
+                txt += " 已经成功向client 发送！\n";
+            }
+            else
+            {
+                txt += " 向client 发送 消息失败！\n";
+            }           
 
+            this.Invoke(new EventHandler(delegate {
+                this.txt_log.AppendText(txt);
+            }));
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -60,7 +97,9 @@ namespace KinectAudioRecognition
 
         void sock_GetMessage(Socket socket, byte[] msg)
         {
+            Log.log.WriteDebugLog("Client _sock_GetMessage" + System.Text.Encoding.Default.GetString(msg));
             RequestItem item = RequestItem.Deserialize(msg);
+            
             if (item != null)
                 SetInfo(item, false);
         }
@@ -108,6 +147,7 @@ namespace KinectAudioRecognition
                     }
 
                 }
+
                 this.txt_log.AppendText(
                     "{0},socket:{1},grammar:{2},command:{3},Confidence:{4},NO:{5},Recognized:{6}\n".ExtFormat(issend ? "发送请求" : "接收结果",
                     address + ":" + port,
@@ -119,6 +159,26 @@ namespace KinectAudioRecognition
             }
         }
 
+        /// <summary>
+        /// Gets the metadata for the speech recognizer (acoustic model) most suitable to
+        /// process audio from Kinect device.
+        /// </summary>
+        /// <returns>
+        /// RecognizerInfo if found, <code>null</code> otherwise.
+        /// </returns>
+        private static RecognizerInfo GetRecognizer(string RecognizerID)
+        {
+            Log.log.WriteDebugLog("GetKinectRecognizer——获取识别设备");
+            foreach (RecognizerInfo recognizer in SpeechRecognitionEngine.InstalledRecognizers())
+            {
+                if (string.Compare(recognizer.Id, RecognizerID, true)==0)
+                {
+                    return recognizer;
+                }
+            }
+
+            return null;
+        }
 
 
     }
