@@ -38,9 +38,16 @@ namespace KinectCore
         /// <param name="item"></param>
         public void AddRequest(RequestItem item)
         {
+            Log.log.WriteDebugLog("开始 添加请求，加入队列");
             this.queue.Enqueue(item);
             if (this.CurrentItem == null)
                 this.CurrentItem = FetchNext();
+            Log.log.WriteDebugLog("完成 添加请求，加入队列");
+        }
+
+        private void InitDefaultRecognizer()
+        {
+
         }
         /// <summary>
         /// 初始化 
@@ -110,6 +117,7 @@ namespace KinectCore
             this.SocketServer = new KinectSocketServer();
             this.SocketServer.GetMessage += SocketServer_GetMessage;
         }
+
         /// <summary>
         /// 接收消息
         /// </summary>
@@ -119,10 +127,12 @@ namespace KinectCore
         {
             try
             {
+                Log.log.WriteDebugLog("SocketServer_GetMessage_接收消息");
                 RequestItem item = RequestItem.Deserialize(msg);
                 if (item == null) return;
                 item.SrcSocket = socket;
                 this.AddRequest(item);
+                Log.log.WriteDebugLog("SocketServer_GetMessage_添加队列");
             }
             catch (Exception ex)
             {
@@ -135,6 +145,7 @@ namespace KinectCore
         /// <param name="filekey"></param>
         private  void LoadGrammar(string filekey)
         {
+            Log.log.WriteDebugLog("开始加载语法文件");
             string file = System.Configuration.ConfigurationManager.AppSettings[filekey];
             if (string.IsNullOrEmpty(file))
             {
@@ -161,6 +172,7 @@ namespace KinectCore
                 this.speechEngine.UnloadAllGrammars();
                 Grammar g = new Grammar(file);
                 this.speechEngine.LoadGrammar(g);
+                Log.log.WriteDebugLog("完成语法文件加载....");
             }
             catch (Exception)
             {
@@ -176,6 +188,7 @@ namespace KinectCore
             this.CurrentItem.Recognized = e.Result.Text;
             if (!string.IsNullOrEmpty(e.Result.Text))
             {
+                Log.log.WriteDebugLog("SpeechRejected——识别到一个");
                 if (string.Compare(this.CurrentItem.Commond, e.Result.Text, true) == 0)
                 {
                     this.CurrentItem.Confidence = (int)e.Result.Confidence * 100;
@@ -205,8 +218,10 @@ namespace KinectCore
 
             try
             {
+                Log.log.WriteDebugLog("开始读取下一条");
                 item = this.queue.Dequeue();
                 LoadGrammar(item.GrammarFile);
+                Log.log.WriteDebugLog("成功读取下一条");
             }
             catch (Exception ex)
             {
@@ -222,6 +237,8 @@ namespace KinectCore
 
             if (!string.IsNullOrEmpty(e.Result.Text))
             {
+                Log.log.WriteDebugLog("SpeechRecognized——识别到一个");
+
                 this.CurrentItem.Recognized = e.Result.Text;
 
                 if (string.Compare(this.CurrentItem.Commond, e.Result.Text, true) == 0)
@@ -253,6 +270,7 @@ namespace KinectCore
         /// </returns>
         private static RecognizerInfo GetKinectRecognizer()
         {
+            Log.log.WriteDebugLog("GetKinectRecognizer——获取识别设备");
             foreach (RecognizerInfo recognizer in SpeechRecognitionEngine.InstalledRecognizers())
             {
                 string value;

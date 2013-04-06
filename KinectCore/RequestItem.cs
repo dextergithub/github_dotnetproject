@@ -31,6 +31,8 @@ namespace KinectCore
         public static RequestItem Deserialize(byte[] b)
         {
             string txt = System.Text.Encoding.Default.GetString(b);
+            Log.log.WriteDebugLog("反序列化：" + txt);
+
             return Newtonsoft.Json.JsonConvert.DeserializeObject<RequestItem>(txt);
         }
 

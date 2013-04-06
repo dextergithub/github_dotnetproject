@@ -23,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketsClient", "SocketsCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognition", "SpeechRecognition\SpeechRecognition\SpeechRecognition.csproj", "{568D9314-9730-495F-817E-CB153C0C83B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Splicer", "splicer-source-1.0.0.0\Backup\Splicer\Splicer.csproj", "{77C46D9D-1BC1-4CAF-87CF-9242721066EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Splicer", "splicer-source-1.0.0.0\Splicer\Splicer.csproj", "{77C46D9D-1BC1-4CAF-87CF-9242721066EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Splicer.Contrib", "splicer-source-1.0.0.0\Backup\Splicer.Contrib\Splicer.Contrib.csproj", "{4DE8D46C-1974-4D80-B71D-0683E66AD9E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Splicer.Contrib", "splicer-source-1.0.0.0\Splicer.Contrib\Splicer.Contrib.csproj", "{4DE8D46C-1974-4D80-B71D-0683E66AD9E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Splicer.Tests", "splicer-source-1.0.0.0\Splicer.Tests\Splicer.Tests.csproj", "{642F2739-7D12-4532-9153-15EC7A0CB3B4}"
 EndProject

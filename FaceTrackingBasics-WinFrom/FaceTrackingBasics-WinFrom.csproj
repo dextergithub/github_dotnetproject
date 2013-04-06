@@ -104,15 +104,15 @@
       <Project>{1304f122-e132-49f0-884f-0d4e58fc18cb}</Project>
       <Name>BaseCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.Kinect.Toolkit.FaceTracking\Microsoft.Kinect.Toolkit.FaceTracking.csproj">
+    <ProjectReference Include="..\Microsoft.Kinect.Toolkit.FaceTracking\Microsoft.Kinect.Toolkit.FaceTracking.csproj">
       <Project>{1bcf9cee-df01-430e-b49d-41a9a88963eb}</Project>
       <Name>Microsoft.Kinect.Toolkit.FaceTracking</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.Kinect.Toolkit\Microsoft.Kinect.Toolkit.csproj">
+    <ProjectReference Include="..\Microsoft.Kinect.Toolkit\Microsoft.Kinect.Toolkit.csproj">
       <Project>{c6f9c31b-6130-4443-a5cc-ef0664552ecd}</Project>
       <Name>Microsoft.Kinect.Toolkit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FaceTrackingBasics-WPF.csproj">
+    <ProjectReference Include="..\FaceTrackingBasics-WPF\FaceTrackingBasics-WPF.csproj">
       <Project>{8FB2DEA6-9900-4FC5-87E4-B54188F62884}</Project>
       <Name>FaceTrackingBasics-WPF</Name>
     </ProjectReference>

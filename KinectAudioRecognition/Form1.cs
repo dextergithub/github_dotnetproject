@@ -39,7 +39,7 @@ namespace KinectAudioRecognition
             }
             catch (Exception ex)
             {
-                
+                Log.log.WriteErrLog("Form1_Load", ex,"");
                 MessageBox.Show(ex.Message +"\n" +ex.StackTrace);
             }
            

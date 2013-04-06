@@ -59,7 +59,7 @@ namespace KinectCore
 
                 byte[] v = MsgBuffer.Take(REnd).ToArray();
 
-                Log.log.Debug("Server_Receive:"+System.Text.Encoding.Default.GetString(v));
+                Log.log.WriteDebugLog("Server_Receive 接收到:"+System.Text.Encoding.Default.GetString(v));
                 GetMessage(RSocket, v);
                 //同时接收客户端回发的数据，用于回发
                 MsgBuffer = new byte[65535];

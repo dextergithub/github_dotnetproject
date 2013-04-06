@@ -88,12 +88,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\splicer-source-1.0.0.0\Splicer\Splicer.csproj">
-      <Project>{77c46d9d-1bc1-4caf-87cf-9242721066ef}</Project>
-      <Name>Splicer</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
