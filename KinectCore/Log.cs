@@ -64,6 +64,7 @@ namespace KinectCore
         /// <param name="message">The message.</param>
         private static void WriteLogFile(string message)
         {
+            if (!Properties.Settings.Default.LogEnable) return;
             try
             {
                 Mutex.WaitOne();
