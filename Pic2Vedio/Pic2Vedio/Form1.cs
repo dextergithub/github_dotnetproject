@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Pic2Vedio
 {
@@ -143,6 +144,38 @@ namespace Pic2Vedio
 
             //t.Start();
             // return t;
+        }
+
+
+        private void MonitorFile()
+        {
+            if (string.IsNullOrEmpty(Pic2Vedio.Properties.Settings.Default.MonitorFile))
+            {
+                return;
+            }
+
+            FileInfo file = new FileInfo(Properties.Settings.Default.MonitorFile);
+            if (file != null)
+            {
+                FileSystemWatcher watcher = new FileSystemWatcher(file.DirectoryName, "*.xml");
+                watcher.Changed += watcher_Changed;
+            }
+
+        }
+
+        void watcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            //throw new NotImplementedException();
+            if (e.ChangeType == WatcherChangeTypes.Changed && string.Compare(e.FullPath, Properties.Settings.Default.MonitorFile, true) == 0)
+            {
+
+            }
+        }
+
+        void PicToVedio()
+        {
+            XDocument doc = XDocument.Load(Properties.Settings.Default.MonitorFile);
+            
         }
 
     }
