@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Pic2Vedio
@@ -21,65 +22,11 @@ namespace Pic2Vedio
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            WaterMark wm = new WaterMark();
-            FileInfo basfile = new FileInfo("./demo/1 (1).jpg");
-
-
-            if (basfile != null)
-            {
-                Bitmap bp = new Bitmap(basfile.FullName);
-                FontFamily f = new FontFamily("宋体");
-
-                for (int i = 0; i < 200; i++)
-                {
-                    Bitmap tmp = new Bitmap(bp);
-                    Image img = wm.Mark(tmp, MarkType.Text, string.Format("{0},{1}", i, (int)(i / 24)), tmp, 150, 150, true, Color.Red, 0F, f);
-                    img.Save("./demo/" + i + ".jpg");
-                }
-            }
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
-
-                OpenFileDialog dig = new OpenFileDialog();
-                dig.Multiselect = true;
-                dig.Filter = "图片|*.jpg;*.png;*.gif";
-                // generates a little slide-show, with audio track and fades between images.
-                if (dig.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-
-                    string[] files = dig.FileNames;
-                    double fr = this.fps.Value;
-                    RunBuilder(dig.FileNames, this.fps.Value);
-                    MessageBox.Show("Completed");
-
-
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-
-            }
-
+            MonitorFile();
         }
 
 
-
-        private void RunBuilder(string[] files, double fr)
+        private void RunBuilder(string[] files, string outputFile)
         {
 
 
@@ -96,9 +43,9 @@ namespace Pic2Vedio
                 Directory.CreateDirectory(path);
             }
 
-            string outputFile = path + "\\demo" + DateTime.Now.ToString("yyyyMMdd") + ".wmv";
+            //string outputFile = path + "\\demo" + DateTime.Now.ToString("yyyyMMdd") + ".wmv";
 
-            double fps = ((double)1) / Convert.ToDouble(fr);
+            double fps = ((double)1) / Convert.ToDouble(Pic2Vedio.Properties.Settings.Default.DefaultRate);
 
             using (ITimeline timeline = new DefaultTimeline())
             {
@@ -159,6 +106,7 @@ namespace Pic2Vedio
             {
                 FileSystemWatcher watcher = new FileSystemWatcher(file.DirectoryName, "*.xml");
                 watcher.Changed += watcher_Changed;
+                watcher.WaitForChanged(WatcherChangeTypes.Changed);
             }
 
         }
@@ -168,15 +116,65 @@ namespace Pic2Vedio
             //throw new NotImplementedException();
             if (e.ChangeType == WatcherChangeTypes.Changed && string.Compare(e.FullPath, Properties.Settings.Default.MonitorFile, true) == 0)
             {
+                HandlerFile();
+            }
+            FileSystemWatcher t = sender as FileSystemWatcher;
+            if (t != null)
+            {
+                Task.Factory.StartNew(() => { t.WaitForChanged(WatcherChangeTypes.Changed); });
 
             }
         }
 
-        void PicToVedio()
+        void HandlerFile()
         {
-            XDocument doc = XDocument.Load(Properties.Settings.Default.MonitorFile);
-            
+            XmlDocument doc = new XmlDocument();
+            doc.Load(Properties.Settings.Default.MonitorFile);
+            foreach (XmlNode item in doc.SelectNodes("//root/data/AllImage"))
+            {
+                try
+                {
+                    HandleNode(item);
+                }
+                catch (Exception ex)
+                {
+                    File.AppendAllText("./" + DateTime.Now.ToString("yyyy-mm-dd") + ".txt", ex.Message + ex.StackTrace);
+                }
+
+            }
+
         }
+
+        void HandleNode(XmlNode e)
+        {
+            string root = "";
+            string outfile = "";
+
+            List<string> image = new List<string>();
+            foreach (XmlNode item in e.SelectNodes("./bigImage/@path"))
+            {
+
+                FileInfo f = new FileInfo(item.Value);
+                if (f.Exists)
+                {
+                    if (string.IsNullOrEmpty(root))
+                    {
+                        root = f.Directory.Name;
+                        outfile = f.DirectoryName + "\\" + root + ".wmv";
+                        if (File.Exists(outfile))
+                        {
+                            break;
+                        }
+                    }
+                    image.Add(item.Value);
+                }
+            }
+            if (image.Count > 0)
+            {
+                RunBuilder(image.ToArray(), outfile);
+            }
+        }
+
 
     }
 }

@@ -8,8 +8,11 @@
     <Setting Name="OutPut" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="MonitorFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="MonitorFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">H:\github_dotnetproject\Pic2Vedio\Pic2Vedio\drawImages\save_images.xml</Value>
+    </Setting>
+    <Setting Name="DefaultRate" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">24</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -38,6 +38,9 @@
     <StartupObject>Pic2Vedio.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SgmlReaderDll">
+      <HintPath>..\..\packages\SgmlReader.1.8.11\lib\4.0\SgmlReaderDll.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -74,6 +77,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -88,11 +92,74 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="demo\1 %281%29.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="drawImages\1\0_17158.png" />
+    <Content Include="drawImages\1\10_171537.png" />
+    <Content Include="drawImages\1\11_171540.png" />
+    <Content Include="drawImages\1\12_171543.png" />
+    <Content Include="drawImages\1\13_171546.png" />
+    <Content Include="drawImages\1\14_171549.png" />
+    <Content Include="drawImages\1\15_171552.png" />
+    <Content Include="drawImages\1\16_171555.png" />
+    <Content Include="drawImages\1\17_171558.png" />
+    <Content Include="drawImages\1\18_17160.png" />
+    <Content Include="drawImages\1\19_17163.png" />
+    <Content Include="drawImages\1\1_171511.png" />
+    <Content Include="drawImages\1\20_17166.png" />
+    <Content Include="drawImages\1\21_17169.png" />
+    <Content Include="drawImages\1\22_171612.png" />
+    <Content Include="drawImages\1\2_171514.png" />
+    <Content Include="drawImages\1\3_171517.png" />
+    <Content Include="drawImages\1\4_171520.png" />
+    <Content Include="drawImages\1\5_171523.png" />
+    <Content Include="drawImages\1\6_171526.png" />
+    <Content Include="drawImages\1\7_171529.png" />
+    <Content Include="drawImages\1\8_171531.png" />
+    <Content Include="drawImages\1\9_171534.png" />
+    <Content Include="drawImages\2\0_171632.png" />
+    <Content Include="drawImages\2\10_17171.png" />
+    <Content Include="drawImages\2\11_17174.png" />
+    <Content Include="drawImages\2\12_17177.png" />
+    <Content Include="drawImages\2\13_171711.png" />
+    <Content Include="drawImages\2\14_171714.png" />
+    <Content Include="drawImages\2\15_171717.png" />
+    <Content Include="drawImages\2\1_171634.png" />
+    <Content Include="drawImages\2\2_171637.png" />
+    <Content Include="drawImages\2\3_171640.png" />
+    <Content Include="drawImages\2\4_171643.png" />
+    <Content Include="drawImages\2\5_171646.png" />
+    <Content Include="drawImages\2\6_171649.png" />
+    <Content Include="drawImages\2\7_171652.png" />
+    <Content Include="drawImages\2\8_171655.png" />
+    <Content Include="drawImages\2\9_171658.png" />
+    <Content Include="drawImages\3\0_171744.png" />
+    <Content Include="drawImages\3\10_171813.png" />
+    <Content Include="drawImages\3\11_171816.png" />
+    <Content Include="drawImages\3\12_171819.png" />
+    <Content Include="drawImages\3\13_171822.png" />
+    <Content Include="drawImages\3\14_171824.png" />
+    <Content Include="drawImages\3\15_171827.png" />
+    <Content Include="drawImages\3\16_171830.png" />
+    <Content Include="drawImages\3\17_171833.png" />
+    <Content Include="drawImages\3\18_171836.png" />
+    <Content Include="drawImages\3\19_171839.png" />
+    <Content Include="drawImages\3\1_171747.png" />
+    <Content Include="drawImages\3\20_171842.png" />
+    <Content Include="drawImages\3\21_171845.png" />
+    <Content Include="drawImages\3\2_171750.png" />
+    <Content Include="drawImages\3\3_171753.png" />
+    <Content Include="drawImages\3\4_171756.png" />
+    <Content Include="drawImages\3\5_171759.png" />
+    <Content Include="drawImages\3\6_17182.png" />
+    <Content Include="drawImages\3\7_17184.png" />
+    <Content Include="drawImages\3\8_17187.png" />
+    <Content Include="drawImages\3\9_171810.png" />
+    <Content Include="drawImages\save_images.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseCommon\BaseCommon\BaseCommon.csproj">
+      <Project>{1304f122-e132-49f0-884f-0d4e58fc18cb}</Project>
+      <Name>BaseCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\splicer-source-1.0.0.0\Splicer\Splicer.csproj">
       <Project>{77c46d9d-1bc1-4caf-87cf-9242721066ef}</Project>
       <Name>Splicer</Name>

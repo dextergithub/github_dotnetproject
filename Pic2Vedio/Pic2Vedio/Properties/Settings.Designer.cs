@@ -41,15 +41,21 @@ namespace Pic2Vedio.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("H:\\github_dotnetproject\\Pic2Vedio\\Pic2Vedio\\drawImages\\save_images.xml")]
         public string MonitorFile {
             get {
                 return ((string)(this["MonitorFile"]));
             }
-            set {
-                this["MonitorFile"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("24")]
+        public int DefaultRate {
+            get {
+                return ((int)(this["DefaultRate"]));
             }
         }
     }
