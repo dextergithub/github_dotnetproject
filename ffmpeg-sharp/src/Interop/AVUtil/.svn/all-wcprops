@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/Interop/AVUtil
+END
+AVClass.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/22/trunk/ffmpeg-sharp/src/Interop/AVUtil/AVClass.cs
+END
+AVRounding.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/20/trunk/ffmpeg-sharp/src/Interop/AVUtil/AVRounding.cs
+END
+AVOption.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/22/trunk/ffmpeg-sharp/src/Interop/AVUtil/AVOption.cs
+END
+AVRational.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/20/trunk/ffmpeg-sharp/src/Interop/AVUtil/AVRational.cs
+END
+AVOptionType.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/7/trunk/ffmpeg-sharp/src/Interop/AVUtil/AVOptionType.cs
+END
+Enums.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/20/trunk/ffmpeg-sharp/src/Interop/AVUtil/Enums.cs
+END
+PixelFormat.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/Interop/AVUtil/PixelFormat.cs
+END

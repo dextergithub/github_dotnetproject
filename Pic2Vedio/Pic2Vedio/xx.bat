@@ -1,0 +1,2 @@
+F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\ffmpeg.exe -threads 2 -y -r 24 -i "F:/drawImages/1/1 (2).jpg" -passlogfile log.txt  F:\GitHub\github_dotnetproject\Pic2Vedio\Pic2Vedio\output.avi 
+pause

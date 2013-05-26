@@ -22,11 +22,14 @@ namespace Pic2Vedio
         public Form1()
         {
             InitializeComponent();
-            MonitorFile();
+
+
+
         }
 
+        Task TB = null;
 
-        private void RunBuilder(string[] files, string outputFile)
+        private void RunBuilder(Image[] files, string outputFile)
         {
 
 
@@ -58,7 +61,7 @@ namespace Pic2Vedio
 
                 // IOrderedEnumerable<FileInfo> enumerable = JPGfilesCopy.OrderBy(f => f.CreationTime);
 
-                foreach (string f in files)
+                foreach (Image f in files)
                 {
                     //listBox1.Items.Add(f.FullName);
                     IClip k = videoTrack.AddImage(f, 0, fps);
@@ -68,29 +71,22 @@ namespace Pic2Vedio
                 // add some audio
 
                 ITrack audioTrack = timeline.AddAudioGroup().AddTrack();
-                //ITrack audioTrack = timeline.AddAudioGroup().AddTrack();
-
-                //IClip audio = audioTrack.AddAudio(@textBox1.Text, 0, videoTrack.Duration);
-
-                // render our slideshow out to a windows media file
-                //string path = Environment.GetFolderPath(Environment.SpecialFolder.Programs);
-
-                using (WindowsMediaRenderer renderer = new WindowsMediaRenderer(timeline, outputFile, WindowsMediaProfiles.HighQualityVideo))
+                try
                 {
-                    renderer.Render();
+                    using (WindowsMediaRenderer renderer = new WindowsMediaRenderer(timeline, outputFile, WindowsMediaProfiles.HighQualityVideo))
+                    {
+                        renderer.Render();
 
+                    }
                 }
+                catch (Exception ex)
+                {
 
-                //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-                // axWindowsMediaPlayer1.URL = @"C:\Users\dell\Documents\My Dropbox\Deema\Deema\bin\Release\" + outputFile;
-
+                    File.AppendAllText("./" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", ex.Message + ex.StackTrace);
+                }
             }
             #endregion
-            // });
 
-            //t.Start();
-            // return t;
         }
 
 
@@ -114,14 +110,17 @@ namespace Pic2Vedio
         void watcher_Changed(object sender, FileSystemEventArgs e)
         {
             //throw new NotImplementedException();
-            if (e.ChangeType == WatcherChangeTypes.Changed && string.Compare(e.FullPath, Properties.Settings.Default.MonitorFile, true) == 0)
+            string mfile = Properties.Settings.Default.MonitorFile;
+            if (e.ChangeType == WatcherChangeTypes.Changed && string.Compare(e.FullPath, mfile, true) == 0)
             {
                 HandlerFile();
             }
             FileSystemWatcher t = sender as FileSystemWatcher;
             if (t != null)
             {
-                Task.Factory.StartNew(() => { t.WaitForChanged(WatcherChangeTypes.Changed); });
+                // Task.Factory.StartNew(() => {
+                t.WaitForChanged(WatcherChangeTypes.Changed);
+                //});
 
             }
         }
@@ -138,7 +137,7 @@ namespace Pic2Vedio
                 }
                 catch (Exception ex)
                 {
-                    File.AppendAllText("./" + DateTime.Now.ToString("yyyy-mm-dd") + ".txt", ex.Message + ex.StackTrace);
+                    File.AppendAllText("./" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", ex.Message + ex.StackTrace);
                 }
 
             }
@@ -150,8 +149,13 @@ namespace Pic2Vedio
             string root = "";
             string outfile = "";
 
-            List<string> image = new List<string>();
-            foreach (XmlNode item in e.SelectNodes("./bigImage/@path"))
+            XmlNodeList allpath = e.SelectNodes("./bigImage/@path");
+
+            int leng = allpath.Count.ToString().Length;
+            int idx = 0;
+            string temp = "";
+
+            foreach (XmlNode item in allpath)
             {
 
                 FileInfo f = new FileInfo(item.Value);
@@ -160,22 +164,52 @@ namespace Pic2Vedio
                     if (string.IsNullOrEmpty(root))
                     {
                         root = f.Directory.Name;
-                        outfile = f.DirectoryName + "\\" + root + ".wmv";
+                        outfile = f.DirectoryName + "\\" + root + ".avi";
+                        temp = f.DirectoryName + "\\temp\\";
+                        if (!Directory.Exists(temp))
+                        {
+                            Directory.CreateDirectory(temp);
+                        }
+
                         if (File.Exists(outfile))
                         {
                             break;
                         }
                     }
-                    image.Add(item.Value);
+
+                    ConvertImag(item.Value, temp + idx.ToString().PadLeft(leng, '0') + ".jpg");
+                    idx++;
                 }
             }
-            if (image.Count > 0)
+            if (idx > 0)
             {
-                RunBuilder(image.ToArray(), outfile);
+                FFEPEGHelper f = new FFEPEGHelper(Properties.Settings.Default.DefaultRate, temp + "%" + (leng > 1 ? leng.ToString() : "") + "d.jpg", outfile);
+                f.CreateAvi();
+                Directory.Delete(temp,true);
             }
         }
 
+        private void ConvertImag(string file, string savefile)
+        {
+            //using (Bitmap bm = new Bitmap(file))
+            //{
+            //    MemoryStream s = new MemoryStream();
+            //    bm.Save(s, System.Drawing.Imaging.ImageFormat.Jpeg);
+            //    s.Flush();
+            Bitmap b = (Bitmap)Bitmap.FromFile(file);
 
+            b.Save(savefile, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            //}
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            HandlerFile();
+            // Task.Factory.StartNew(() => {
+            MonitorFile();
+            //});
+        }
     }
 }
 

@@ -104,7 +104,7 @@ namespace Splicer.Renderer
             int hr = 0;
 
             // create the render engine
-            _renderEngine = (IRenderEngine) new RenderEngine();
+            _renderEngine = (IRenderEngine)new RenderEngine();
             _cleanup.Add(_renderEngine);
 
             // tell the render engine about the timeline it should use
@@ -187,7 +187,7 @@ namespace Splicer.Renderer
             string sRet;
             int hr;
 
-            pXML = (IXml2Dex) new Xml2Dex();
+            pXML = (IXml2Dex)new Xml2Dex();
 
             try
             {
@@ -238,8 +238,12 @@ namespace Splicer.Renderer
 
         public void Render()
         {
-            IAsyncResult result = BeginRender(null, null);
-            EndRender(result);
+           // lock (_renderLock)
+            {
+                IAsyncResult result = BeginRender(null, null);
+                EndRender(result);
+            }
+
         }
 
         public void Cancel()
@@ -428,8 +432,8 @@ namespace Splicer.Renderer
                 // If no callback was provided, don't create a samplegrabber
                 if (callback != null)
                 {
-                    var isg = (ISampleGrabber) new SampleGrabber();
-                    ibfSampleGrabber = (IBaseFilter) isg;
+                    var isg = (ISampleGrabber)new SampleGrabber();
+                    ibfSampleGrabber = (IBaseFilter)isg;
                     _cleanup.Add(ibfSampleGrabber);
 
                     hr = isg.SetCallback(callback, 1);
@@ -535,7 +539,7 @@ namespace Splicer.Renderer
                 try
                 {
                     // Inform the graph we will be writing to disk (rather than previewing)
-                    var timelineGroup = (IAMTimelineGroup) group;
+                    var timelineGroup = (IAMTimelineGroup)group;
                     hr = timelineGroup.SetPreviewMode(false);
                     DESError.ThrowExceptionForHR(hr);
                 }
@@ -579,7 +583,7 @@ namespace Splicer.Renderer
         {
             int hr;
 
-            _mediaControl = (IMediaControl) Graph;
+            _mediaControl = (IMediaControl)Graph;
             _cleanup.Add(_mediaControl);
 
             var eventThread = new Thread(EventWait);
@@ -599,14 +603,14 @@ namespace Splicer.Renderer
             try
             {
                 // Returned when GetEvent is called but there are no events
-                const int E_ABORT = unchecked((int) 0x80004004);
+                const int E_ABORT = unchecked((int)0x80004004);
 
                 int hr;
                 IntPtr p1, p2;
                 EventCode ec;
                 // TODO: present the event code in the OnCompleted event
                 EventCode exitCode;
-                var pEvent = (IMediaEvent) Graph;
+                var pEvent = (IMediaEvent)Graph;
 
                 do
                 {
@@ -619,7 +623,7 @@ namespace Splicer.Renderer
                     {
                         switch (ec)
                         {
-                                // If the clip is finished playing
+                            // If the clip is finished playing
                             case EventCode.Complete:
                             case EventCode.ErrorAbort:
                                 ChangeState(RendererState.GraphStarted, RendererState.GraphCompleting);
@@ -696,7 +700,7 @@ namespace Splicer.Renderer
 
         protected void DisableClock()
         {
-            int hr = ((IMediaFilter) Graph).SetSyncSource(null);
+            int hr = ((IMediaFilter)Graph).SetSyncSource(null);
             DsError.ThrowExceptionForHR(hr);
         }
     }

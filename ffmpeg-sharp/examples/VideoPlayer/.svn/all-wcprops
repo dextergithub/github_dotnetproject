@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/examples/VideoPlayer
+END
+VideoPlayer.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/examples/VideoPlayer/VideoPlayer.csproj
+END
+VideoPlayer.resx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/11/trunk/ffmpeg-sharp/examples/VideoPlayer/VideoPlayer.resx
+END
+VideoPlayer.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/11/trunk/ffmpeg-sharp/examples/VideoPlayer/VideoPlayer.Designer.cs
+END
+VideoPlayer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/examples/VideoPlayer/VideoPlayer.cs
+END
+VideoPlayerControl.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/11/trunk/ffmpeg-sharp/examples/VideoPlayer/VideoPlayerControl.Designer.cs
+END
+VideoPlayerControl.cs
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/examples/VideoPlayer/VideoPlayerControl.cs
+END
+Program.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/11/trunk/ffmpeg-sharp/examples/VideoPlayer/Program.cs
+END

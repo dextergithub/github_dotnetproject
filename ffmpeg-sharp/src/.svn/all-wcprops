@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src
+END
+IVideoStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/IVideoStream.cs
+END
+AudioEncoderStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/AudioEncoderStream.cs
+END
+FFmpegSharp.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/FFmpegSharp.csproj
+END
+MediaFile.cs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/MediaFile.cs
+END
+DecoderStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/DecoderStream.cs
+END
+VideoScalingStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/VideoScalingStream.cs
+END
+AudioDecoderStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/AudioDecoderStream.cs
+END
+DecoderException.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/12/trunk/ffmpeg-sharp/src/DecoderException.cs
+END
+IMediaStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/IMediaStream.cs
+END
+IAudioStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/IAudioStream.cs
+END
+FFmpegSharp.snk
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/7/trunk/ffmpeg-sharp/src/FFmpegSharp.snk
+END
+FifoMemoryStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/FifoMemoryStream.cs
+END
+VideoDecoderStream.cs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/24/trunk/ffmpeg-sharp/src/VideoDecoderStream.cs
+END
+ffmpeg-sharp.dll.config
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/18/trunk/ffmpeg-sharp/src/ffmpeg-sharp.dll.config
+END

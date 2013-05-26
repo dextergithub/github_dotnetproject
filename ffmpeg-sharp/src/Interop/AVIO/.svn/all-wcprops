@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/22/trunk/ffmpeg-sharp/src/Interop/AVIO
+END
+URLPoolEntry.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/7/trunk/ffmpeg-sharp/src/Interop/AVIO/URLPoolEntry.cs
+END
+ByteIOContext.cs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/14/trunk/ffmpeg-sharp/src/Interop/AVIO/ByteIOContext.cs
+END
+URLProtocol.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/22/trunk/ffmpeg-sharp/src/Interop/AVIO/URLProtocol.cs
+END
+URLContext.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/22/trunk/ffmpeg-sharp/src/Interop/AVIO/URLContext.cs
+END

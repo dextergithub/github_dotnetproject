@@ -38,9 +38,6 @@
     <StartupObject>Pic2Vedio.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SgmlReaderDll">
-      <HintPath>..\..\packages\SgmlReader.1.8.11\lib\4.0\SgmlReaderDll.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FFEPEGHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,12 +152,11 @@
     <Content Include="drawImages\3\8_17187.png" />
     <Content Include="drawImages\3\9_171810.png" />
     <Content Include="drawImages\save_images.xml" />
+    <Content Include="ffmpeg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseCommon\BaseCommon\BaseCommon.csproj">
-      <Project>{1304f122-e132-49f0-884f-0d4e58fc18cb}</Project>
-      <Name>BaseCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\splicer-source-1.0.0.0\Splicer\Splicer.csproj">
       <Project>{77c46d9d-1bc1-4caf-87cf-9242721066ef}</Project>
       <Name>Splicer</Name>
