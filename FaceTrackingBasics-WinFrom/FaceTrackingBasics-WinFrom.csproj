@@ -38,7 +38,7 @@
     <Reference Include="log4net">
       <HintPath>D:\Workspace\Tools\log4net\log4net-1.2.11-bin\bin\net\4.0\release\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Kinect, Version=1.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Kinect, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -111,10 +111,6 @@
     <ProjectReference Include="..\Microsoft.Kinect.Toolkit\Microsoft.Kinect.Toolkit.csproj">
       <Project>{c6f9c31b-6130-4443-a5cc-ef0664552ecd}</Project>
       <Name>Microsoft.Kinect.Toolkit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FaceTrackingBasics-WPF\FaceTrackingBasics-WPF.csproj">
-      <Project>{8FB2DEA6-9900-4FC5-87E4-B54188F62884}</Project>
-      <Name>FaceTrackingBasics-WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
