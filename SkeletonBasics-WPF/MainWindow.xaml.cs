@@ -76,6 +76,8 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
         /// </summary>
         private DrawingGroup drawingGroup;
 
+        private DrawingGroup waveDrawingGroup;
+
         /// <summary>
         /// Drawing image that we will display
         /// </summary>
@@ -139,11 +141,15 @@ namespace Microsoft.Samples.Kinect.SkeletonBasics
             // Create the drawing group we'll use for drawing
             this.drawingGroup = new DrawingGroup();
 
+            this.waveDrawingGroup = new DrawingGroup();
+
             // Create an image source that we can use in our image control
             this.imageSource = new DrawingImage(this.drawingGroup);
 
             // Display the drawing using our image control
             Image.Source = this.imageSource;
+
+            this.ImageWave.Source = new DrawingImage(this.waveDrawingGroup);
 
             // Look through all sensors and start the first connected one.
             // This requires that a Kinect is connected at the time of app startup.
