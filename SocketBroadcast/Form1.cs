@@ -103,15 +103,35 @@ namespace SocketBroadcast
             {
                 if (_socket == null)
                 {
-                    IPEndPoint ipedp = new IPEndPoint(IPAddress.Parse("127.0.0.1"), Properties.Settings.Default.Port);
+                    //IPAddress[] arrIPAddresses = Dns.GetHostAddresses(Dns.GetHostName());
+                    //IPAddress local = null;
+                    //foreach (IPAddress ip in arrIPAddresses)
+                    //{
+                    //    if (ip.AddressFamily.Equals(AddressFamily.InterNetwork))
+                    //    {
+                    //        local = ip;
+                    //        this.txt_log.AppendText("LocalIP:"+ ip.ToString());
+                    //        break;
+                    //    }
+                    //}
+
+                    //if (local == null)
+                    //{
+                    //    local = IPAddress.Parse("127.0.0.1");
+                    //}
+
+                    //IPAddress.Parse("10.241.204.89")
+                    IPEndPoint ipedp = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.Port);
                     _socket = new Socket(ipedp.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                     SocketServer.Bind(ipedp);
-                    SocketServer.Listen(100);
+                    SocketServer.Listen(500);
                 }
 
                 return _socket;
             }
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
