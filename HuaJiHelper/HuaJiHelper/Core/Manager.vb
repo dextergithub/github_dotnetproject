@@ -13,6 +13,25 @@
     End Sub
 
     Public Shared Sub UpdateStore()
+        Dim pagecount As Integer = 1
+        Dim pageindex As Integer = 1
+
+        Dim Totallist As New List(Of StoreInfo)
+        Dim list As List(Of StoreInfo) ' = WebDataHelper.LoadStoreInfo(Nothing, pageindex, pagecount)
+
+        Dim runTask(20) As Task(Of List(Of StoreInfo))
+
+        While (pagecount >= pageindex)
+            Dim index As Integer = Task.WaitAny(runTask)
+            list = runTask(index).Result
+            If (Not list Is Nothing) Then
+                Totallist.AddRange(list)
+                Dim t As Task = Task.Run(Sub()
+                                             Totallist.AddRange(WebDataHelper.LoadStoreInfo(Nothing, pageindex, pagecount))
+                                         End Sub)
+
+                pageindex += 1
+        End While
 
     End Sub
 

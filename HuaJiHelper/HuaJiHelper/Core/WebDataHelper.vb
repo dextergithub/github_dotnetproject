@@ -63,7 +63,7 @@ Public Class WebDataHelper
 
 
     Public Shared Function LoadStoreInfo(address As AddressInfo, pageindex As Integer, ByRef pagecount As Integer) As List(Of StoreInfo)
-        '''' http://shop.huaji.com/index.php?pt=&keyword=&province={0}&city={1}&town={2}&page={3}
+        ' http://shop.huaji.com/index.php?pt=&keyword=&province={0}&city={1}&town={2}&page={3}
         Dim url As String = "http://shop.huaji.com/index.php?"
 
         If Not address Is Nothing Then
@@ -106,14 +106,14 @@ Public Class WebDataHelper
         End If
 
         Dim itemnode As HtmlNodeCollection = doc.DocumentNode.SelectNodes("//div[@class='shopdel_itme shopdel_itme1']")
+        Dim list As New List(Of StoreInfo)
 
         For Each item As HtmlNode In itemnode
-            Task.Run(Sub()
-
-                         Dim info As StoreInfo = GetStoreInfo(item)
-                         Debug.WriteLine(info)
-                     End Sub).GetAwaiter().GetResult()
+            Dim info As StoreInfo = GetStoreInfo(item)
+            list.Add(info)
         Next
+
+        Return list
 
     End Function
 
