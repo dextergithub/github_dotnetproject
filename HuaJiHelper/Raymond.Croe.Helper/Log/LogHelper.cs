@@ -8,7 +8,7 @@ namespace Raymond.Croe.Helper
 {
     public class LogHelper
     {
-
+        
     }
 
     public enum LogTag

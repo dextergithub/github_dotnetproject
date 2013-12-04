@@ -9,9 +9,10 @@
     End Sub
 
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
-        ' WebDataHelper.LoadHuaJiCity()
-        Dim c As Integer
-        WebDataHelper.LoadStoreInfo(Nothing, 1, c)
+        Manager.UpdateData()
+    End Sub
 
+    Private Sub ToolStripButton_store_Click(sender As Object, e As EventArgs) Handles ToolStripButton_store.Click
+       
     End Sub
 End Class

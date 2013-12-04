@@ -21,38 +21,38 @@ Public Class WebDataHelper
 
     End Function
 
-    Private Shared Function GetCity(token As JProperty, info As AddressInfo, level As Integer) As List(Of AddressInfo)
+    Private Shared Function GetCity(token As JProperty, parent As AddressInfo, level As Integer) As List(Of AddressInfo)
 
         Dim list As List(Of AddressInfo) = New List(Of AddressInfo)
 
-        Dim parent As AddressInfo
+        Dim info As AddressInfo
 
         Dim key As String = token.Name
         Dim name = token.Value("name")
         Dim cells As JToken = token.Value("cell")
 
         If level = 1 Then
-            info = New AddressInfo()
-            info.ProvinceCode = key
-            info.Province = name
+            parent = New AddressInfo()
+            parent.ProvinceCode = key
+            parent.Province = name
         ElseIf level = 2 Then
-            info.City = name
-            info.CityCode = key
+            parent.City = name
+            parent.CityCode = key
         End If
 
         If (cells Is Nothing) Then
-            parent = info.Clone()
+            info = parent.Clone()
             If level = 2 Then
-                info.City = info.Province
-                info.CityCode = info.ProvinceCode
+                info.City = parent.Province
+                info.CityCode = parent.ProvinceCode
             End If
 
-            parent.DistrictCode = key
-            parent.District = name
-            list.Add(parent)
+            info.DistrictCode = key
+            info.District = name
+            list.Add(info)
         ElseIf Not cells Is Nothing Then
             For Each item As JProperty In cells
-                list.AddRange(GetCity(item, info, level + 1))
+                list.AddRange(GetCity(item, parent, level + 1))
             Next
 
         End If
@@ -71,22 +71,41 @@ Public Class WebDataHelper
                 url += "province=" + address.ProvinceCode + "&"
             End If
 
-            If Not String.IsNullOrEmpty(address.CityCode) Then
-                url += "city=" + address.CityCode + "&"
-            End If
+            If (address.CityCode <> address.ProvinceCode) Then
+                If Not String.IsNullOrEmpty(address.CityCode) Then
+                    url += "city=" + address.CityCode + "&"
+                End If
 
-            If Not String.IsNullOrEmpty(address.DistrictCode) Then
-                url += "town=" + address.DistrictCode + "&"
+
+                If Not String.IsNullOrEmpty(address.DistrictCode) Then
+                    url += "town=" + address.DistrictCode + "&"
+                End If
+
+            Else
+                If Not String.IsNullOrEmpty(address.DistrictCode) Then
+                    url += "City=" + address.DistrictCode + "&"
+                End If
             End If
         End If
-
+        Dim list As New List(Of StoreInfo)
         If (pageindex > 0) Then
             url += "page=" + pageindex.ToString() + "&"
         End If
+        Debug.WriteLine(url)
+        Try
+            Dim html As String = New HttpHelper().SetUrl(New Uri(url)).GetText()
 
-        Dim html As String = New HttpHelper().SetUrl(New Uri(url)).GetText()
+            list = AnalyzingStoreList(html, pagecount)
+            If Not list Is Nothing Then
+                list.ForEach(Sub(item)
+                                 item.AddressIndex = address.ToString()
+                             End Sub)
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(url)
+            Debug.WriteLine(ex)
+        End Try
 
-        Dim list As List(Of StoreInfo) = AnalyzingStoreList(html, pagecount)
         Return list
 
     End Function
@@ -106,8 +125,11 @@ Public Class WebDataHelper
         End If
 
         Dim itemnode As HtmlNodeCollection = doc.DocumentNode.SelectNodes("//div[@class='shopdel_itme shopdel_itme1']")
-        Dim list As New List(Of StoreInfo)
 
+        Dim list As New List(Of StoreInfo)
+        If (itemnode Is Nothing) Then
+            Return list
+        End If
         For Each item As HtmlNode In itemnode
             Dim info As StoreInfo = GetStoreInfo(item)
             list.Add(info)
@@ -141,7 +163,7 @@ Public Class WebDataHelper
 
             If (node.InnerText.Contains("联 系 人：")) Then
 
-                info.Linkman = node.InnerText.Replace("联 系 人：", "").Trim()
+                info.LinkMan = node.InnerText.Replace("联 系 人：", "").Trim()
             ElseIf node.InnerText.Contains("QQ 号 码：") Then
                 info.QQ = node.InnerText.Replace("QQ 号 码：", "").Trim()
             ElseIf node.InnerText.Contains("固定电话：") Then

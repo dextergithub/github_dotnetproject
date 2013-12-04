@@ -8,7 +8,7 @@ namespace Raymond.Croe.Helper
 {
     public static class ExtFunction
     {
-        public static string ExtForamt(this string _self, params object[] par)
+        public static string ExtFormat(this string _self, params object[] par)
         {
             return string.Format(_self, par);
         }
@@ -26,7 +26,7 @@ namespace Raymond.Croe.Helper
    return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
 #endif
 
-        }
+        }        
 
     }
 }

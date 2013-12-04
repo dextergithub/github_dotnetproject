@@ -1,5 +1,6 @@
 ﻿Imports Raymond.Croe.Helper
 
+<SQLite.Table("AddressInfo")>
 Public Class AddressInfo
     Inherits Object
     'Implements ICloneable
@@ -8,6 +9,7 @@ Public Class AddressInfo
         Return DirectCast(Me.MemberwiseClone(), AddressInfo)
     End Function
     Private _Province As String
+    <SQLite.Column("Province")>
     Public Property Province() As String
         Get
             Return _Province
@@ -18,6 +20,7 @@ Public Class AddressInfo
     End Property
 
     Private _ProvinceCode As String
+    <SQLite.Column("ProvinceCode")>
     Public Property ProvinceCode() As String
         Get
             Return _ProvinceCode
@@ -28,6 +31,7 @@ Public Class AddressInfo
     End Property
 
     Private _City As String
+    <SQLite.Column("City")>
     Public Property City() As String
         Get
             Return _City
@@ -39,6 +43,7 @@ Public Class AddressInfo
 
 
     Private _CityCode As String
+    <SQLite.Column("CityCode")>
     Public Property CityCode() As String
         Get
             Return _CityCode
@@ -50,6 +55,7 @@ Public Class AddressInfo
 
 
     Private _District As String
+    <SQLite.Column("District")>
     Public Property District() As String
         Get
             Return _District
@@ -60,6 +66,7 @@ Public Class AddressInfo
     End Property
 
     Private _DistrictCode As String
+    <SQLite.Column("DistrictCode")>
     Public Property DistrictCode() As String
         Get
             Return _DistrictCode
@@ -70,7 +77,11 @@ Public Class AddressInfo
     End Property
 
     Public Overrides Function ToString() As String
-        Return "{0}({1}),{2}({3}),{4}({5}),".ExtForamt(Province, ProvinceCode, City, CityCode, District, DistrictCode)
+        Return "{0}({1}),{2}({3}),{4}({5}),".ExtFormat(Province, ProvinceCode, City, CityCode, District, DistrictCode)
+    End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Return String.Compare(Me.ToString(), obj.ToString()) = 0
     End Function
 
 End Class

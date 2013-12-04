@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -12,14 +13,64 @@ namespace Raymond.Croe.Helper
 {
     public class HttpHelper
     {
-        HttpWebRequest Request = null;
+        HttpWebRequest _request = null;
+        HttpWebRequest Request
+        {
+            get
+            {
+                if (_request != null)
+                {
+                    _request = HttpGet(this.Uri);
+                }
+                return _request;
+            }
+        }
+
+        public HttpHelper GetRequest(bool reget)
+        {
+            if (reget)
+                _request = HttpGet(this.Uri);
+            else if (_request == null)
+            {
+                _request = HttpGet(this.Uri);
+            }
+            return this;
+
+        }
+        HttpWebResponse _Respone = null;
         HttpWebResponse Response
         {
             get
             {
+                if (_Respone != null)
+                {
+                    return _Respone;
+                }
+                
+                int time = 1;
+                do
+                {
+                    try
+                    {
+                        _Respone = (HttpWebResponse)this.GetRequest(true).Request .GetResponse();
+                        if (_Respone.StatusCode != HttpStatusCode.OK)
+                        {
+                            time++;
+                        }
+                        else
+                        {
+                            return _Respone;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        time++;
+                    }
 
-                ExceptionHelper.NullIf(this.Request);
-                return (HttpWebResponse)this.Request.GetResponse();
+                    System.Threading.Thread.Sleep(1000);
+                } while (time < ReTryCount && time != 1);
+
+                return _Respone;
             }
         }
 
@@ -29,10 +80,20 @@ namespace Raymond.Croe.Helper
         {
 
         }
+        public int ReTryCount = 3;
+
+        public HttpHelper SetTryCount(int count)
+        {
+            if (count <= 0) count = 1;
+            this.ReTryCount = count;
+            return this;
+        }
+
+        private Uri Uri { get; set; }
 
         public HttpHelper SetUrl(Uri uri)
         {
-            this.Request = (HttpWebRequest)WebRequest.CreateHttp(uri);           
+            this.Uri = uri;
             return this;
         }
         public Stream ResponseStream()
@@ -69,17 +130,16 @@ namespace Raymond.Croe.Helper
 
         public string GetText()
         {
-            string txt = GetText(Encoding.ASCII);
+            string txt = GetText(Encoding.UTF8);
             return txt;
         }
 
 
-        public static string HttpGet(string url)
+        public static HttpWebRequest HttpGet(Uri url)
         {
-            string responsetxt = "";
-            HttpWebRequest request = (HttpWebRequest)WebRequest.CreateDefault(new Uri(url));
 
-            return responsetxt;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.CreateDefault((url));
+            return request;
         }
 
     }

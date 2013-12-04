@@ -7,6 +7,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HuaJiHelper", "HuaJiHelper\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raymond.Croe.Helper", "Raymond.Croe.Helper\Raymond.Croe.Helper.csproj", "{BB3A4262-4CFD-4995-B42F-886A5805D09E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuaJiDataServices", "HuaJiDataServices\HuaJiDataServices.csproj", "{98D74434-F649-4E5B-8535-C105B63AF351}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BB3A4262-4CFD-4995-B42F-886A5805D09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB3A4262-4CFD-4995-B42F-886A5805D09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB3A4262-4CFD-4995-B42F-886A5805D09E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D74434-F649-4E5B-8535-C105B63AF351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D74434-F649-4E5B-8535-C105B63AF351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D74434-F649-4E5B-8535-C105B63AF351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D74434-F649-4E5B-8535-C105B63AF351}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

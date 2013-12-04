@@ -1,5 +1,8 @@
 ﻿Imports Raymond.Croe.Helper
 Public Class StoreInfo
+    Implements IEqualityComparer(Of StoreInfo)
+
+
 
     Private _Code As String
     Public Property Code() As String
@@ -115,7 +118,7 @@ Public Class StoreInfo
 
 
     Private _linkman As String
-    Public Property Linkman() As String
+    Public Property LinkMan() As String
         Get
             Return _linkman
         End Get
@@ -203,11 +206,30 @@ Public Class StoreInfo
         End Set
     End Property
 
+    Property CustomStore As Int32
+
+    Property AddressIndex As String
+
 
     Public Overrides Function ToString() As String
         Return Me.ExtToJsonString()
     End Function
 
+    Public Overrides Function Equals(obj As Object) As Boolean
 
+        Dim x As StoreInfo = DirectCast(obj, StoreInfo)
+        If (obj Is Nothing) Then
+            Return False
+        End If
+        Return String.Compare(Me.Code, x.Code) = 0
+    End Function
 
+    Public Function Equals1(x As StoreInfo, y As StoreInfo) As Boolean Implements IEqualityComparer(Of StoreInfo).Equals
+        Return x.Code = y.Code
+    End Function
+
+    Public Function GetHashCode1(obj As StoreInfo) As Integer Implements IEqualityComparer(Of StoreInfo).GetHashCode
+        Return obj.GetHashCode()
+    End Function
 End Class
+

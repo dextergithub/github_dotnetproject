@@ -26,6 +26,7 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.btn_update = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton_store = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -40,7 +41,7 @@ Partial Class Form1
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_update})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_update, Me.ToolStripButton_store})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1014, 25)
@@ -55,6 +56,15 @@ Partial Class Form1
         Me.btn_update.Name = "btn_update"
         Me.btn_update.Size = New System.Drawing.Size(23, 22)
         Me.btn_update.Text = "更新数据"
+        '
+        'ToolStripButton_store
+        '
+        Me.ToolStripButton_store.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton_store.Image = CType(resources.GetObject("ToolStripButton_store.Image"), System.Drawing.Image)
+        Me.ToolStripButton_store.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton_store.Name = "ToolStripButton_store"
+        Me.ToolStripButton_store.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton_store.Text = "同步花店"
         '
         'Form1
         '
@@ -74,5 +84,6 @@ Partial Class Form1
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents btn_update As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton_store As System.Windows.Forms.ToolStripButton
 
 End Class
