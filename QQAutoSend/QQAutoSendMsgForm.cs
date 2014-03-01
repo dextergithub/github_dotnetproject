@@ -129,7 +129,9 @@ namespace QQAutoSend
             else
             {
                 if (this.SendQQMsg(hwnd, qqcaption, this.txtSendText.Text))
-                    MessageBox.Show("测试成功");
+                {
+                   // MessageBox.Show("测试成功");
+                }
                 else
                     MessageBox.Show("测试失败");
             }
@@ -208,13 +210,30 @@ namespace QQAutoSend
             {
                 StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
                 NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
-                if (!caption.ToString().Equals(String.Empty) && !caption.ToString().Equals("TXFloatingWnd") && !caption.ToString().Equals("TXMenuWindow") && !caption.ToString().Equals("QQ2011"))
+                if (!caption.ToString().Equals(String.Empty) 
+                    && !caption.ToString().Equals("TXFloatingWnd") 
+                    && !caption.ToString().Equals("TXMenuWindow") 
+                    && !caption.ToString().Equals("QQ2011"))
                 {
                    
                     QQChatWindows qqchat = new QQChatWindows(hWnd, caption.ToString());
                     this._QQListWindows.Add(qqchat);
 
                     this.listQQWindows.Items.Add(caption);
+                   
+                    //遍历 子控件
+                    //if (caption.ToString().Equals("QQ"))
+                    {
+                        windowFound = IntPtr.Zero;
+                        var callback=new NativeMethods.EnumChildWindowsDelegate(EnumChildWindowsProc);
+                        NativeMethods.EnumChildWindows(hWnd, callback , IntPtr.Zero);
+                        GC.KeepAlive(callback);
+                        while (windowFound != IntPtr.Zero)
+                        {
+                            System.Threading.Thread.Sleep(1000);
+                        }
+                    }
+                  
                 }
 
             }
@@ -222,6 +241,18 @@ namespace QQAutoSend
 
         }
 
+        private IntPtr windowFound;
+
+
+        private   bool EnumChildWindowsProc(IntPtr hWnd, IntPtr lParam)
+        {
+            //IntPtr hWnd =  (IntPtr)(xx);
+            windowFound = hWnd;
+            StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
+            NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
+            System.Diagnostics.Trace.WriteLine("Sub:"+ caption.ToString());
+            return true ;
+        }
         public string GetProcessName(IntPtr hWnd)
         {
             try
