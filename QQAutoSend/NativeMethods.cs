@@ -15,18 +15,38 @@ namespace QQAutoSend
         public delegate bool EnumDesktopWindowsDelegate(IntPtr hWnd, uint lParam);
         public delegate bool EnumChildWindowsDelegate(IntPtr hwnd, IntPtr lParam);
         public delegate IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+
         #endregion
+
+        internal struct POINTAPI
+        {
+            internal int x;
+            internal int y;
+        }
+
+        internal struct RECT
+        {
+            internal int left;
+            internal int top;
+            internal int right;
+            internal int bottom;
+
+           internal bool IsEmpty()
+            {
+                return left == 0 && top == 0 && right == 0 && bottom == 0;
+            }
+        }
 
         #region Windows API Import Section
 
-       
+
         [DllImport("user32.dll", EntryPoint = "FindWindowEx", SetLastError = true)]
-        internal static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 
         [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
         internal static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
-        [DllImport("user32.dll", EntryPoint = "GetWindowTextLength", SetLastError = true,CharSet = CharSet.Unicode)]
+        [DllImport("user32.dll", EntryPoint = "GetWindowTextLength", SetLastError = true, CharSet = CharSet.Unicode)]
         internal static extern int GetWindowTextLength(IntPtr hWnd);
 
         [DllImport("user32.dll", EntryPoint = "GetWindowText", CharSet = CharSet.Unicode, SetLastError = true)]
@@ -34,21 +54,22 @@ namespace QQAutoSend
 
 
         [DllImport("kernel32.dll ", CharSet = CharSet.Auto)]
-        public extern static IntPtr GetModuleHandle(string lpModuleName); 
+        public extern static IntPtr GetModuleHandle(string lpModuleName);
 
-      
+
         [DllImport("user32.dll", EntryPoint = "GetClassName", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern int GetClassName(IntPtr hWnd, StringBuilder buf, int nMaxCount);
 
-        [DllImport("user32.dll", EntryPoint = "EnumDesktopWindows", ExactSpelling = false, 
+        [DllImport("user32.dll", EntryPoint = "EnumDesktopWindows", ExactSpelling = false,
             CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool EnumDesktopWindows(IntPtr hDesktop, 
+        internal static extern bool EnumDesktopWindows(IntPtr hDesktop,
             EnumDesktopWindowsDelegate lpEnumCallbackFunction, IntPtr lParam);
 
-        [DllImport("user32.Dll")]
+        [DllImport("user32.dll", EntryPoint = "EnumChildWindows", ExactSpelling = false,
+            CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool EnumChildWindows(IntPtr parentHandle, EnumChildWindowsDelegate callback, IntPtr lParam);
+        internal static extern bool EnumChildWindows(IntPtr parentHandle, EnumChildWindowsDelegate callback, IntPtr lParam);
 
 
         [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true, CharSet = CharSet.Unicode)]
@@ -67,10 +88,10 @@ namespace QQAutoSend
         [DllImport("user32.dll")]
         public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out int dwProcessId);
 
-      
+
 
         [DllImport("Psapi.dll")]
-        public static extern int EnumProcessModules(IntPtr hProcess, out IntPtr hMoudle,int cb, out int cbNeed);
+        public static extern int EnumProcessModules(IntPtr hProcess, out IntPtr hMoudle, int cb, out int cbNeed);
 
 
         [DllImport("psapi.dll")]
@@ -89,7 +110,44 @@ namespace QQAutoSend
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern bool SetWindowText(IntPtr hwnd, String lpString);
 
-     
+        #region Mouse
+        [DllImport("User32")]
+        public extern static void mouse_event(int dwFlags, int dx, int dy, int dwData, IntPtr dwExtraInfo);
+
+        [DllImport("user32.dll", EntryPoint = "SwapMouseButton")]
+        internal extern static int SwapMouseButton(int bSwap);
+
+        [DllImport("user32", EntryPoint = "ClipCursor")]
+        internal extern static int ClipCursor(ref   RECT lpRect);
+
+        [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
+        internal extern static int GetCursorPos(ref   POINTAPI lpPoint);
+
+        [DllImport("user32.dll", EntryPoint = "ShowCursor")]
+        internal extern static bool ShowCursor(bool bShow);
+
+        [DllImport("user32.dll", EntryPoint = "EnableWindow")]
+        internal extern static int EnableWindow(int hwnd, int fEnable);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowRect")]
+        internal extern static int GetWindowRect(IntPtr hwnd, ref   RECT lpRect);
+
+        [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
+        internal extern static int SetCursorPos(int x, int y);
+
+        [DllImport("user32.dll", EntryPoint = "GetSystemMetrics")]
+        internal extern static int GetSystemMetrics(int nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "SetDoubleClickTime")]
+        internal extern static int SetDoubleClickTime(int wCount);
+
+        [DllImport("user32.dll", EntryPoint = "GetDoubleClickTime")]
+        internal extern static int GetDoubleClickTime();
+
+        [DllImport("kernel32.DLL", EntryPoint = "Sleep")]
+        internal extern static void Sleep(int dwMilliseconds);
+
+        #endregion
 
         #endregion
 
@@ -190,8 +248,45 @@ namespace QQAutoSend
         }
         #endregion
 
-     
 
 
+
+    }
+    public class Consts
+    {
+        /// <summary>
+        /// 移动鼠标
+        /// </summary>
+        public const int MOUSEEVENTF_MOVE = 0x0001;
+        /// <summary>
+        /// 模拟鼠标左键按下
+        /// </summary>
+        public const int MOUSEEVENTF_LEFTDOWN = 0x0002;
+        /// <summary>
+        /// 模拟鼠标左键抬起
+        /// </summary>
+
+        public const int MOUSEEVENTF_LEFTUP = 0x0004;
+        /// <summary>
+        /// 模拟鼠标右键按下
+        /// </summary>
+
+        public const int MOUSEEVENTF_RIGHTDOWN = 0x0008;
+        /// <summary>
+        ///  模拟鼠标右键抬起
+        /// </summary>
+        public const int MOUSEEVENTF_RIGHTUP = 0x0010;
+        /// <summary>
+        /// 模拟鼠标中键按下 
+        /// </summary>
+        public const int MOUSEEVENTF_MIDDLEDOWN = 0x0020;
+        /// <summary>
+        /// 模拟鼠标中键抬起
+        /// </summary>
+        public const int MOUSEEVENTF_MIDDLEUP = 0x0040;
+        /// <summary>
+        /// 标示是否采用绝对坐标
+        /// </summary>
+        public const int MOUSEEVENTF_ABSOLUTE = 0x8000;
     }
 }

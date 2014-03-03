@@ -80,7 +80,7 @@ namespace QQAutoSend
 
             this.timer1.Start();
             this.btLoopSend.Enabled = false;
-            this.btStopLoop.Enabled = true ;
+            this.btStopLoop.Enabled = true;
         }
 
         private void btStopLoop_Click(object sender, EventArgs e)
@@ -130,12 +130,12 @@ namespace QQAutoSend
             {
                 if (this.SendQQMsg(hwnd, qqcaption, this.txtSendText.Text))
                 {
-                   // MessageBox.Show("测试成功");
+                    // MessageBox.Show("测试成功");
                 }
                 else
                     MessageBox.Show("测试失败");
             }
-            
+
         }
 
         private void SendQQMsgLoop()
@@ -143,29 +143,29 @@ namespace QQAutoSend
             string text = this.txtSendText.Text;
             for (int i = 0; i < this._QQListWindows.Count; i++)
             {
-                IntPtr hwnd=this._QQListWindows[i].WindowHwnd;
-                string caption=this._QQListWindows[i].Caption;
+                IntPtr hwnd = this._QQListWindows[i].WindowHwnd;
+                string caption = this._QQListWindows[i].Caption;
                 try
                 {
                     if (this.listSendRecord.Items.Count >= 1000)
                         this.listSendRecord.Items.Clear();
 
-                    if(this.SendQQMsg(hwnd,caption , text))
-                    this.listSendRecord.Items.Insert(0, caption + ":" + "发送成功");
+                    if (this.SendQQMsg(hwnd, caption, text))
+                        this.listSendRecord.Items.Insert(0, caption + ":" + "发送成功");
                     else
-                    this.listSendRecord.Items.Insert(0, caption + ":" + "发送失败");
-                    
+                        this.listSendRecord.Items.Insert(0, caption + ":" + "发送失败");
+
 
                 }
                 catch (System.Exception ex)
                 {
-                    this.listSendRecord.Items.Insert(0, caption + ":" +ex.Message);
+                    this.listSendRecord.Items.Insert(0, caption + ":" + ex.Message);
                 }
                 finally
                 {
                     System.Threading.Thread.Sleep(500);
                 }
-               
+
             }
         }
 
@@ -182,7 +182,7 @@ namespace QQAutoSend
                 SendKeys.SendWait("{ENTER}");
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -202,38 +202,27 @@ namespace QQAutoSend
             StringBuilder className = new StringBuilder(255 + 1); //ClassName 最长
             NativeMethods.GetClassName(hWnd, className, className.Capacity);
 
-            if (!qqproname.Equals(String.Empty) 
-                && qqproname.Equals("QQ") 
+            if (!qqproname.Equals(String.Empty)
+                && qqproname.Equals("QQ")
                 && className.ToString().Equals("TXGuiFoundation")
                 )
             //if (!qqproname.Equals(String.Empty) && qqproname.Equals("WindowsApplication2"))
             {
                 StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
                 NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
-                if (!caption.ToString().Equals(String.Empty) 
-                    && !caption.ToString().Equals("TXFloatingWnd") 
-                    && !caption.ToString().Equals("TXMenuWindow") 
+                if (!caption.ToString().Equals(String.Empty)
+                    && !caption.ToString().Equals("TXFloatingWnd")
+                    && !caption.ToString().Equals("TXMenuWindow")
                     && !caption.ToString().Equals("QQ2011"))
                 {
-                   
+
                     QQChatWindows qqchat = new QQChatWindows(hWnd, caption.ToString());
                     this._QQListWindows.Add(qqchat);
 
                     this.listQQWindows.Items.Add(caption);
-                   
-                    //遍历 子控件
-                    //if (caption.ToString().Equals("QQ"))
-                    {
-                        windowFound = IntPtr.Zero;
-                        var callback=new NativeMethods.EnumChildWindowsDelegate(EnumChildWindowsProc);
-                        NativeMethods.EnumChildWindows(hWnd, callback , IntPtr.Zero);
-                        GC.KeepAlive(callback);
-                        while (windowFound != IntPtr.Zero)
-                        {
-                            System.Threading.Thread.Sleep(1000);
-                        }
-                    }
-                  
+
+
+
                 }
 
             }
@@ -241,17 +230,18 @@ namespace QQAutoSend
 
         }
 
-        private IntPtr windowFound;
+        private static IntPtr windowFound;
+        static NativeMethods.EnumChildWindowsDelegate callback = new NativeMethods.EnumChildWindowsDelegate(EnumChildWindowsProc);
 
-
-        private   bool EnumChildWindowsProc(IntPtr hWnd, IntPtr lParam)
+        private static bool EnumChildWindowsProc(IntPtr hWnd, IntPtr lParam)
         {
             //IntPtr hWnd =  (IntPtr)(xx);
             windowFound = hWnd;
             StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
             NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
-            System.Diagnostics.Trace.WriteLine("Sub:"+ caption.ToString());
-            return true ;
+            System.Diagnostics.Trace.WriteLine("Sub:" + caption.ToString());
+            NativeMethods.EnumChildWindows(hWnd, callback, IntPtr.Zero);
+            return true;
         }
         public string GetProcessName(IntPtr hWnd)
         {
@@ -351,8 +341,110 @@ namespace QQAutoSend
             }
         }
 
-      
-       
+        public IntPtr IntPtr_MainQQ = IntPtr.Zero;
+        public IntPtr IntPtr_FindQQForm = IntPtr.Zero;
+
+        private IntPtr FindQQWindow(string title)
+        {
+            IntPtr hander = IntPtr.Zero;
+            NativeMethods.EnumDesktopWindows(IntPtr.Zero, new NativeMethods.EnumDesktopWindowsDelegate((hWnd, b) =>
+            {
+                Trace.WriteLine( hWnd .ToInt32() + "---------------------");
+                string qqproname = this.GetProcessName(hWnd);
+                StringBuilder className = new StringBuilder(255 + 1); //ClassName 最长
+                NativeMethods.GetClassName(hWnd, className, className.Capacity);
+
+                Trace.WriteLine("ProcessName:"+ qqproname +",CalssName:" + className);
+                if (!qqproname.Equals(String.Empty)
+                    && qqproname.Equals("QQ")
+                    && className.ToString().Equals("TXGuiFoundation")
+                    )
+                {
+
+                    StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
+                    NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
+                    System.Diagnostics.Trace.WriteLine("caption:"+caption.ToString());
+                    if (
+                        caption.ToString().Equals(title))
+                    {
+                        hander = hWnd;
+                       
+                    }
+
+                }
+                Trace.WriteLine(hWnd.ToInt32() + "---------------------");
+                return hander == IntPtr.Zero;
+
+
+            }), IntPtr.Zero);
+            return hander;
+        }
+
+        private void ShowQQFindDialog()
+        {
+            if (IntPtr_MainQQ == IntPtr.Zero)
+                IntPtr_MainQQ = FindQQWindow("QQ");
+            if (IntPtr_MainQQ == IntPtr.Zero)
+            {
+                MessageBox.Show("找不到QQ主窗口");
+                return;
+            }
+            QQAutoSend.NativeMethods.RECT rect = new NativeMethods.RECT();
+            //获取大小
+            NativeMethods.GetWindowRect(IntPtr_MainQQ, ref rect);
+            if (rect.IsEmpty())
+            {
+                MessageBox.Show("获取主窗口大小失败！");
+                return;
+
+            }
+            Point p = new Point() { X = rect.left + 180, Y = rect.bottom - 20 };
+
+            NativeMethods.SetCursorPos(p.X, p.Y);
+            NativeMethods.BringWindowToTop(IntPtr_MainQQ);
+            NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, IntPtr.Zero);
+            NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTUP, 0, 0, 0, IntPtr.Zero);
+
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            if (IntPtr_FindQQForm == IntPtr.Zero)
+            {
+                ShowQQFindDialog();
+                System.Threading.Thread.Sleep(1000);
+                IntPtr_FindQQForm = FindQQWindow("查找联系人");
+            }
+
+            if (IntPtr_FindQQForm == IntPtr.Zero)
+            {
+                MessageBox.Show("打开查找对话框失败！");
+                return;
+            }
+
+            QQAutoSend.NativeMethods.RECT rect = new NativeMethods.RECT();
+            //获取大小
+            NativeMethods.GetWindowRect(IntPtr_FindQQForm, ref rect);
+            if (rect.IsEmpty())
+            {
+                MessageBox.Show("获取主窗口大小失败！");
+                return;
+
+            }
+            Point p = new Point() { X = rect.left + 180, Y = rect.top  + 200 };
+
+            NativeMethods.SetCursorPos(p.X, p.Y);
+            NativeMethods.BringWindowToTop(IntPtr_FindQQForm);
+            //NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, IntPtr.Zero);
+            //NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTUP, 0, 0, 0, IntPtr.Zero);
+            
+
+        }
+
+
+
 
     }
 }

@@ -38,9 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listSendRecord = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.btRegister = new System.Windows.Forms.Button();
             this.btTestSend = new System.Windows.Forms.Button();
             this.btLoopSend = new System.Windows.Forms.Button();
@@ -53,6 +50,7 @@
             this.btStopLoop = new System.Windows.Forms.Button();
             this.btClear = new System.Windows.Forms.Button();
             this.btTestSingle = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,13 +82,13 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TestSendToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(174, 28);
             // 
             // TestSendToolStripMenuItem
             // 
             this.TestSendToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 12F);
             this.TestSendToolStripMenuItem.Name = "TestSendToolStripMenuItem";
-            this.TestSendToolStripMenuItem.Size = new System.Drawing.Size(172, 24);
+            this.TestSendToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.TestSendToolStripMenuItem.Text = "测试发送信息";
             this.TestSendToolStripMenuItem.Click += new System.EventHandler(this.TestSendToolStripMenuItem_Click);
             // 
@@ -129,39 +127,6 @@
             this.label2.Size = new System.Drawing.Size(136, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "QQ信息发送记录：";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(3, 498);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(88, 16);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "使用说明：";
-            this.linkLabel1.Click += new System.EventHandler(this.Link_Click);
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(25, 518);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(256, 16);
-            this.linkLabel2.TabIndex = 7;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "1、打开所要发送信息的QQ聊天窗口";
-            this.linkLabel2.Click += new System.EventHandler(this.Link_Click);
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(25, 539);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(256, 16);
-            this.linkLabel3.TabIndex = 8;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "2、输入要发送的信息，进行发送。";
-            this.linkLabel3.Click += new System.EventHandler(this.Link_Click);
             // 
             // btRegister
             // 
@@ -273,11 +238,22 @@
             this.btTestSingle.UseVisualStyleBackColor = true;
             this.btTestSingle.Click += new System.EventHandler(this.btTestSingle_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 498);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "显示查找";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // QQAutoSendMsgForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 564);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btTestSingle);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.btStopLoop);
@@ -288,9 +264,6 @@
             this.Controls.Add(this.btLoopSend);
             this.Controls.Add(this.btTestSend);
             this.Controls.Add(this.btRegister);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listSendRecord);
@@ -321,9 +294,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listSendRecord;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.Button btRegister;
         private System.Windows.Forms.Button btTestSend;
         private System.Windows.Forms.Button btLoopSend;
@@ -338,6 +308,7 @@
         private System.Windows.Forms.ToolStripMenuItem TestSendToolStripMenuItem;
         private System.Windows.Forms.Button btClear;
         private System.Windows.Forms.Button btTestSingle;
+        private System.Windows.Forms.Button button1;
     }
 }
 
