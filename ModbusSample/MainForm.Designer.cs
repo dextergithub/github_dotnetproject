@@ -66,7 +66,6 @@
             this.insertedMoneyLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.clearAllAlarmButton = new System.Windows.Forms.LinkLabel();
-            this.motorsControl1 = new ModbusSample.MotorsControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comportButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -74,6 +73,8 @@
             this.changeProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.commStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.motorsControl1 = new ModbusSample.MotorsControl();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -508,18 +509,11 @@
             this.clearAllAlarmButton.Text = "清除所有故障";
             this.clearAllAlarmButton.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.clearAllAlarmButton_LinkClicked);
             // 
-            // motorsControl1
-            // 
-            this.motorsControl1.Location = new System.Drawing.Point(21, 26);
-            this.motorsControl1.Name = "motorsControl1";
-            this.motorsControl1.Size = new System.Drawing.Size(1000, 369);
-            this.motorsControl1.TabIndex = 0;
-            this.motorsControl1.Vendor = null;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comportButton});
+            this.comportButton,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1264, 25);
@@ -559,6 +553,24 @@
             this.commStatusLabel.Name = "commStatusLabel";
             this.commStatusLabel.Size = new System.Drawing.Size(56, 17);
             this.commStatusLabel.Text = "通讯正常";
+            // 
+            // motorsControl1
+            // 
+            this.motorsControl1.Location = new System.Drawing.Point(21, 26);
+            this.motorsControl1.Name = "motorsControl1";
+            this.motorsControl1.Size = new System.Drawing.Size(1000, 369);
+            this.motorsControl1.TabIndex = 0;
+            this.motorsControl1.Vendor = null;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(120, 22);
+            this.toolStripButton1.Text = "启动另一个测试程序";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // MainForm
             // 
@@ -632,6 +644,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label channelLabel;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

@@ -243,5 +243,13 @@ namespace ModbusSample
             vendor.WriteModusData(43, 1);
             vendor.RefreshModbusData(300, 100);
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            TestForm1 t = new TestForm1();
+            t.V = this.vendor;
+
+            t.ShowDialog(this);
+        }
     }
 }
