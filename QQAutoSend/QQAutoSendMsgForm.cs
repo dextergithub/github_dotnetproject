@@ -344,17 +344,39 @@ namespace QQAutoSend
         public IntPtr IntPtr_MainQQ = IntPtr.Zero;
         public IntPtr IntPtr_FindQQForm = IntPtr.Zero;
 
+        public IntPtr FindQQWindow(string title, int trycount, int timeout)
+        {
+            IntPtr r = FindQQWindow(title);
+            int count = 1;
+            if (r == IntPtr.Zero)
+            {
+
+                do
+                {
+                    System.Threading.Thread.Sleep(1000 * timeout);
+                    r = FindQQWindow(title);
+                    count++;
+                    if (count > trycount) break;
+
+                } while (r != IntPtr.Zero);
+            }
+
+            return r;
+        }
+
         private IntPtr FindQQWindow(string title)
         {
             IntPtr hander = IntPtr.Zero;
+
+
             NativeMethods.EnumDesktopWindows(IntPtr.Zero, new NativeMethods.EnumDesktopWindowsDelegate((hWnd, b) =>
             {
-                Trace.WriteLine( hWnd .ToInt32() + "---------------------");
+                Trace.WriteLine(hWnd.ToInt32() + "---------------------");
                 string qqproname = this.GetProcessName(hWnd);
                 StringBuilder className = new StringBuilder(255 + 1); //ClassName 最长
                 NativeMethods.GetClassName(hWnd, className, className.Capacity);
 
-                Trace.WriteLine("ProcessName:"+ qqproname +",CalssName:" + className);
+                Trace.WriteLine("ProcessName:" + qqproname + ",CalssName:" + className);
                 if (!qqproname.Equals(String.Empty)
                     && qqproname.Equals("QQ")
                     && className.ToString().Equals("TXGuiFoundation")
@@ -363,12 +385,12 @@ namespace QQAutoSend
 
                     StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
                     NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
-                    System.Diagnostics.Trace.WriteLine("caption:"+caption.ToString());
+                    System.Diagnostics.Trace.WriteLine("caption:" + caption.ToString());
                     if (
                         caption.ToString().Equals(title))
                     {
                         hander = hWnd;
-                       
+
                     }
 
                 }
@@ -377,6 +399,7 @@ namespace QQAutoSend
 
 
             }), IntPtr.Zero);
+
             return hander;
         }
 
@@ -410,12 +433,14 @@ namespace QQAutoSend
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            IntPtr_FindQQForm = IntPtr.Zero;
             if (IntPtr_FindQQForm == IntPtr.Zero)
             {
                 ShowQQFindDialog();
+
                 System.Threading.Thread.Sleep(1000);
-                IntPtr_FindQQForm = FindQQWindow("查找联系人");
+                IntPtr_FindQQForm = FindQQWindow("查找", 3, 1);
+
             }
 
             if (IntPtr_FindQQForm == IntPtr.Zero)
@@ -429,17 +454,17 @@ namespace QQAutoSend
             NativeMethods.GetWindowRect(IntPtr_FindQQForm, ref rect);
             if (rect.IsEmpty())
             {
-                MessageBox.Show("获取主窗口大小失败！");
+                MessageBox.Show("获取查询口大小失败！");
                 return;
 
             }
-            Point p = new Point() { X = rect.left + 180, Y = rect.top  + 200 };
-
+            Point p = new Point() { X = rect.left + 100, Y = rect.top +100 };
             NativeMethods.SetCursorPos(p.X, p.Y);
             NativeMethods.BringWindowToTop(IntPtr_FindQQForm);
-            //NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, IntPtr.Zero);
-            //NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTUP, 0, 0, 0, IntPtr.Zero);
-            
+            NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, IntPtr.Zero);
+            NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTUP, 0, 0, 0, IntPtr.Zero);
+
+            SendKeys.SendWait("67648781");
 
         }
 
