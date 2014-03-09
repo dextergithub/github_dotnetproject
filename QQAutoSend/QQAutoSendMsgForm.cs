@@ -7,6 +7,10 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using Microsoft.Win32;
+using System.Threading.Tasks;
+using System.Linq;
+
 //Download by http://www.codefans.net
 namespace QQAutoSend
 {
@@ -364,6 +368,30 @@ namespace QQAutoSend
             return r;
         }
 
+        private void LogWindowInfo(IntPtr hWnd)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("IntPtr:" + hWnd.ToString("X2") + "," + hWnd.ToString() + "--------------------");
+            int proid = 0;
+            uint threadid = NativeMethods.GetWindowThreadProcessId(hWnd, out proid);
+            sb.AppendLine("ThreadID:" + threadid.ToString("X2") + "," + threadid.ToString());
+            sb.AppendLine("ProcessID:" + proid.ToString("X2") + "," + proid.ToString());
+            if (threadid > 0 && proid > 0)
+            {
+                Process pro = Process.GetProcessById(proid);
+
+                sb.AppendLine("ProcessName:" + pro.ProcessName);
+                //if (pro.ProcessName != "spyxx_amd64" && pro.ProcessName != "RtLED") sb.AppendLine("ProcessHandle:" + pro.Handle.ToString("X2") + "," + pro.Handle.ToString());
+            }
+            StringBuilder className = new StringBuilder(255 + 1); //ClassName 最长
+            NativeMethods.GetClassName(hWnd, className, className.Capacity);
+            sb.AppendLine("ClassName:" + className.ToString());
+            StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
+            NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
+            sb.AppendLine("caption:" + caption.ToString());
+            System.Diagnostics.Trace.WriteLine(sb.ToString());
+        }
+
         private IntPtr FindQQWindow(string title)
         {
             IntPtr hander = IntPtr.Zero;
@@ -371,30 +399,27 @@ namespace QQAutoSend
 
             NativeMethods.EnumDesktopWindows(IntPtr.Zero, new NativeMethods.EnumDesktopWindowsDelegate((hWnd, b) =>
             {
-                Trace.WriteLine(hWnd.ToInt32() + "---------------------");
+                LogWindowInfo(hWnd);
                 string qqproname = this.GetProcessName(hWnd);
                 StringBuilder className = new StringBuilder(255 + 1); //ClassName 最长
                 NativeMethods.GetClassName(hWnd, className, className.Capacity);
 
-                Trace.WriteLine("ProcessName:" + qqproname + ",CalssName:" + className);
                 if (!qqproname.Equals(String.Empty)
-                    && qqproname.Equals("QQ")
-                    && className.ToString().Equals("TXGuiFoundation")
-                    )
+                   && qqproname.Equals("QQ")
+                   && className.ToString().Equals("TXGuiFoundation")
+                   )
                 {
 
                     StringBuilder caption = new StringBuilder(NativeMethods.GetWindowTextLength(hWnd) + 1);
                     NativeMethods.GetWindowText(hWnd, caption, caption.Capacity);
-                    System.Diagnostics.Trace.WriteLine("caption:" + caption.ToString());
                     if (
-                        caption.ToString().Equals(title))
+                       caption.ToString().Equals(title))
                     {
                         hander = hWnd;
 
                     }
 
                 }
-                Trace.WriteLine(hWnd.ToInt32() + "---------------------");
                 return hander == IntPtr.Zero;
 
 
@@ -407,6 +432,7 @@ namespace QQAutoSend
         {
             if (IntPtr_MainQQ == IntPtr.Zero)
                 IntPtr_MainQQ = FindQQWindow("QQ");
+
             if (IntPtr_MainQQ == IntPtr.Zero)
             {
                 MessageBox.Show("找不到QQ主窗口");
@@ -433,6 +459,8 @@ namespace QQAutoSend
 
         private void button1_Click(object sender, EventArgs e)
         {
+            IntPtr sel = NativeMethods.FindWindow("TXGuiFoundation", "请选择号码"); //FindQQWindow("请选择号码");
+
             IntPtr_FindQQForm = IntPtr.Zero;
             if (IntPtr_FindQQForm == IntPtr.Zero)
             {
@@ -458,7 +486,7 @@ namespace QQAutoSend
                 return;
 
             }
-            Point p = new Point() { X = rect.left + 100, Y = rect.top +100 };
+            Point p = new Point() { X = rect.left + 100, Y = rect.top + 100 };
             NativeMethods.SetCursorPos(p.X, p.Y);
             NativeMethods.BringWindowToTop(IntPtr_FindQQForm);
             NativeMethods.mouse_event(Consts.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, IntPtr.Zero);
@@ -468,7 +496,48 @@ namespace QQAutoSend
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
 
+            IntPtr[] ids = GetQQThreadID();
+
+            foreach (var item in ids)
+            {
+                NativeMethods.EnumThreadWindows(item, new NativeMethods.EnumDesktopWindowsDelegate
+                    ((a, b) =>
+                    {
+
+                        Trace.WriteLine(a);
+                        return true;
+                    }), IntPtr.Zero);
+            }
+
+            return;
+
+            RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
+            String s = key.GetValue("").ToString();
+            String browserpath = null;
+            if (s.StartsWith("\""))
+            {
+                browserpath = s.Substring(1, s.IndexOf('\"', 1) - 1);
+            }
+            else
+            {
+                browserpath = s.Substring(0, s.IndexOf(" "));
+            }
+
+            Process p = System.Diagnostics.Process.Start(browserpath, "http://wpa.qq.com/msgrd?v=3&uin=1651780070&site=qq&menu=yes");
+
+            //Task t = new Task();
+
+        }
+
+        private IntPtr[] GetQQThreadID()
+        {
+            Process[] ps = Process.GetProcessesByName("QQ");
+            return ps.Select(p => p.Handle).ToArray();
+
+        }
 
 
     }

@@ -31,7 +31,7 @@ namespace QQAutoSend
             internal int right;
             internal int bottom;
 
-           internal bool IsEmpty()
+            internal bool IsEmpty()
             {
                 return left == 0 && top == 0 && right == 0 && bottom == 0;
             }
@@ -109,6 +109,10 @@ namespace QQAutoSend
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern bool SetWindowText(IntPtr hwnd, String lpString);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumThreadWindows(IntPtr  dwThreadId, EnumDesktopWindowsDelegate callback, IntPtr  lParam);
 
         #region Mouse
         [DllImport("User32")]

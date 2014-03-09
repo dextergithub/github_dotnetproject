@@ -16,13 +16,12 @@ namespace ModbusSample
         static void Main(string[] args)
         {
             Log log = Log.GetInstance();
-           
-            
+
             try
             {
-               
+
                 string par = System.Environment.CommandLine;
-                if(!string.IsNullOrEmpty(par) && par.IndexOf("ui", StringComparison.OrdinalIgnoreCase)>=0)
+                if (!string.IsNullOrEmpty(par) && par.IndexOf("ui", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
@@ -31,10 +30,17 @@ namespace ModbusSample
                 }
 
                 Vendor vendor = new Vendor();
-                vendor.SetPortName(ModbusSample.Properties.Settings.Default.ComName);
+                if (!vendor.SetPortName(ModbusSample.Properties.Settings.Default.ComName))
+                {
+                    log.WriteDebugLog(ModbusSample.Properties.Settings.Default.ComName + " 连接:打开串口错误!");
 
+                }
+
+                log.WriteDebugLog(ModbusSample.Properties.Settings.Default.ComName + "连接:" + (vendor.CommIsOk ? "通读正常" : "通读异常"));
                 Console.InputEncoding = System.Text.Encoding.UTF8;
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+                log.WriteDebugLog("设置编码正常！开始读取指令！");
 
                 Task readerTast = Task.Factory.StartNew(() =>
                 {
@@ -47,18 +53,10 @@ namespace ModbusSample
                             switch (txt)
                             {
                                 case "A":
-                                    vendor.OutputGoods(ModbusSample.Properties.Settings.Default.ProductA, (flag) =>
-                                    {
-                                        log.WriteDebugLog("出货A：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.ProductA));
-                                        Console.WriteLine("出货A:" + (flag ? "成功" : "失败"));
-                                    });
+                                    OutPutGoods(vendor, "A", log);
                                     break;
                                 case "B":
-                                    vendor.OutputGoods(ModbusSample.Properties.Settings.Default.ProductB, (flag) =>
-                                    {
-                                        log.WriteDebugLog("出货B：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.ProductB));
-                                        Console.WriteLine("出货B:" + (flag ? "成功" : "失败"));
-                                    });
+                                    OutPutGoods(vendor, "B", log);
                                     break;
                                 default:
                                     break;
@@ -69,8 +67,8 @@ namespace ModbusSample
                         {
                             log.Error(exin.Message, exin);
                         }
-                        
-                        if(txt =="exit")
+
+                        if (txt == "exit")
                         {
                             break;
                         }
@@ -89,6 +87,32 @@ namespace ModbusSample
             {
                 log.Error(ex.Message, ex);
             }
+
+        }
+
+        public static void OutPutGoods(Vendor Vendor, string Idx, Log log)
+        {
+            int goodid = -1;
+            if (Idx == "A")
+            {
+                goodid = Properties.Settings.Default.ProductA;
+            }
+            else if (Idx == "B")
+            {
+                goodid = Properties.Settings.Default.ProductB;
+            }
+
+            if (Vendor.ModbusData[Vendor.CurrRunningMotorIndex] != 255)
+            {
+                MessageBox.Show("上一次出货任务还未完成，请稍候。");
+                return;
+            }
+
+            Vendor.OutputGoods(goodid, (flag) =>
+            {
+                log.WriteDebugLog("出货" + Idx + "：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", goodid));
+                Console.WriteLine("出货" + Idx + ":" + (flag ? "成功" : "失败"));
+            });
 
         }
     }
