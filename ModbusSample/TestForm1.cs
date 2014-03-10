@@ -22,9 +22,11 @@ namespace ModbusSample
         private void button1_Click(object sender, EventArgs e)
         {
             if (V == null) return;
-            V.OutputGoods(ModbusSample.Properties.Settings.Default.ProductA, (flag) =>
+            int index=-1;
+            Program.GetIndex("A",ref index);
+            V.OutputGoods(index, (flag) =>
             {
-                MessageBox.Show("出货A：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.ProductA));
+                MessageBox.Show("出货A：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.AChannels));
 
             });
 
@@ -33,9 +35,11 @@ namespace ModbusSample
         private void button2_Click(object sender, EventArgs e)
         {
             if (V == null) return;
-            V.OutputGoods(ModbusSample.Properties.Settings.Default.ProductB, (flag) =>
+            int index = -1;
+            Program.GetIndex("B", ref index);
+            V.OutputGoods(index, (flag) =>
             {
-                MessageBox.Show("出货B：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.ProductB));
+                MessageBox.Show("出货B：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.BChannels));
                
             });
         }

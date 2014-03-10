@@ -37,25 +37,61 @@ namespace ModbusSample.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ProductA {
+        [global::System.Configuration.DefaultSettingValueAttribute("0-2")]
+        public string AChannels {
             get {
-                return ((int)(this["ProductA"]));
+                return ((string)(this["AChannels"]));
             }
             set {
-                this["ProductA"] = value;
+                this["AChannels"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int ProductB {
+        [global::System.Configuration.DefaultSettingValueAttribute("3-5")]
+        public string BChannels {
             get {
-                return ((int)(this["ProductB"]));
+                return ((string)(this["BChannels"]));
             }
             set {
-                this["ProductB"] = value;
+                this["BChannels"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int PerChannel {
+            get {
+                return ((int)(this["PerChannel"]));
+            }
+            set {
+                this["PerChannel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ACurrent {
+            get {
+                return ((int)(this["ACurrent"]));
+            }
+            set {
+                this["ACurrent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int BCurrent {
+            get {
+                return ((int)(this["BCurrent"]));
+            }
+            set {
+                this["BCurrent"] = value;
             }
         }
     }

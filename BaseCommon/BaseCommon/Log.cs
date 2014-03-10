@@ -20,7 +20,7 @@ namespace BaseCommon
         {
             get
             {
-                _logger = GetInstance();
+                if (_logger == null) _logger = GetInstance();
                 return _logger;
             }
         }
@@ -64,7 +64,7 @@ namespace BaseCommon
         /// <param name="message">The message.</param>
         private static void WriteLogFile(string message)
         {
-            if (! string.IsNullOrEmpty( System.Configuration.ConfigurationManager.AppSettings["LogEnable"])) return;
+            if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["LogEnable"])) return;
             try
             {
                 Mutex.WaitOne();
@@ -98,7 +98,12 @@ namespace BaseCommon
 
         public void Error(string message, Exception ex)
         {
-            WriteLogFile(string.Format("{0}.{1} Exception:{2},{3},Detail:{4}", "", "", message, ex.Message, ex.StackTrace));
+            if (ex != null)
+                WriteLogFile(string.Format("{0}.{1} Exception:{2},{3},Detail:{4}", "", "", message, ex.Message, ex.StackTrace));
+            else
+            {
+                Error(message);
+            }
         }
 
         public void WriteErrLog(string message, Exception ex, string p_5)
@@ -110,6 +115,11 @@ namespace BaseCommon
         internal void Error(string p)
         {
             WriteLogFile(p);
+        }
+
+        public void Error(string message, string classname, string methodname)
+        {
+            WriteLogFile(string.Format("{0},{1},{2}", classname, methodname, message));
         }
     }
 }

@@ -4,6 +4,8 @@ using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
 using Modbus.Device;
+using BaseCommon;
+using System.Reflection;
 
 namespace ModbusSample
 {
@@ -20,10 +22,25 @@ namespace ModbusSample
         private bool inited = false;
         private int lastMoneyInserted;
         private int lastChangeRequestCount = 0;
+        /// <summary>
+        /// 找零标记
+        /// </summary>
         public const int ChangeIsBusyIndex = 37;
+        /// <summary>
+        /// Mdb硬币器
+        /// </summary>
         public const int MdbChangerEanbleIndex = 38;
+        /// <summary>
+        /// Mdb纸币器 状态
+        /// </summary>
         public const int MdbNoteEnableIndex = 39;
+        /// <summary>
+        /// 1#脉冲收币器
+        /// </summary>
         public const int Pulse1EnableIndex = 40;
+        /// <summary>
+        /// 2#脉冲收币器
+        /// </summary>
         public const int Pulse2EanableIndex = 41;
         public const int CurrRunningMotorIndex = 42;
 
@@ -144,8 +161,9 @@ namespace ModbusSample
                     serialPort.Open();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Log.log.Error(this.GetType().Name+"_"+ MethodBase.GetCurrentMethod().Name, ex);
                     return false;
                 }
             }
@@ -359,8 +377,9 @@ namespace ModbusSample
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.log.Error(this.GetType().FullName +","+ MethodBase.GetCurrentMethod().Name ,ex);
                 commIsOk = false;
                 return false;
             }
