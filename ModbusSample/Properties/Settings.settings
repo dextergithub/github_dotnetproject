@@ -5,20 +5,5 @@
     <Setting Name="ComName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Com1</Value>
     </Setting>
-    <Setting Name="AChannels" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0-2</Value>
-    </Setting>
-    <Setting Name="BChannels" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3-5</Value>
-    </Setting>
-    <Setting Name="PerChannel" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3</Value>
-    </Setting>
-    <Setting Name="ACurrent" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="BCurrent" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

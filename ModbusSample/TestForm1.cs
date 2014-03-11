@@ -26,7 +26,7 @@ namespace ModbusSample
             Program.GetIndex("A",ref index);
             V.OutputGoods(index, (flag) =>
             {
-                MessageBox.Show("出货A：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.AChannels));
+                MessageBox.Show("出货A：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败",""));
 
             });
 
@@ -39,7 +39,7 @@ namespace ModbusSample
             Program.GetIndex("B", ref index);
             V.OutputGoods(index, (flag) =>
             {
-                MessageBox.Show("出货B：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ModbusSample.Properties.Settings.Default.BChannels));
+                MessageBox.Show("出货B：{0},货道：{1}".ExtFormat(flag ? "成功" : "失败", ""));
                
             });
         }

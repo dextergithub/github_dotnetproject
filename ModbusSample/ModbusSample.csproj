@@ -94,6 +94,7 @@
     <Compile Include="TestForm1.Designer.cs">
       <DependentUpon>TestForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="VEMConfigHelper.cs" />
     <Compile Include="Vendor.cs" />
     <EmbeddedResource Include="InputBox.resx">
       <DependentUpon>InputBox.cs</DependentUpon>
@@ -133,6 +134,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WarningHS.png" />
+    <Content Include="VEMConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="第三方库\FTD2XX.dll" />
     <Content Include="第三方库\FtdAdapter.dll" />
     <Content Include="第三方库\log4net.dll" />

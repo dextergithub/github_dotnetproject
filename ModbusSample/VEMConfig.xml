@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VEM>
+  <Default>
+    <Product ID="A">
+      <ChannelStart>0</ChannelStart>
+      <ChannelEnd>2</ChannelEnd>
+      <PerChannel>4</PerChannel>
+      <Current>0</Current>
+    </Product>
+    <Product ID="B">
+      <ChannelStart>0</ChannelStart>
+      <ChannelEnd>2</ChannelEnd>
+      <PerChannel>4</PerChannel>
+      <Current>0</Current>
+    </Product>
+  </Default>
+  <Instance>
+    <Product ID="A">
+      <ChannelStart>0</ChannelStart>
+      <ChannelEnd>2</ChannelEnd>
+      <PerChannel>4</PerChannel>
+      <Current>2</Current>
+    </Product>
+    <Product ID="B">
+      <ChannelStart>0</ChannelStart>
+      <ChannelEnd>2</ChannelEnd>
+      <PerChannel>4</PerChannel>
+      <Current>0</Current>
+    </Product>
+  </Instance>
+</VEM>
