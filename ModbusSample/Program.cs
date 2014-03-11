@@ -22,24 +22,26 @@ namespace ModbusSample
 
             try
             {
+                VEMConfigHelper config = VEMConfigHelper.Create();
 
                 string par = System.Environment.CommandLine;
                 if (!string.IsNullOrEmpty(par) && par.IndexOf("ui", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new MainForm());
+                    Application.Run(new TestForm1());
+                    return;
 
                 }
 
                 Vendor vendor = new Vendor();
-                if (!vendor.SetPortName(ModbusSample.Properties.Settings.Default.ComName))
+                if (!vendor.SetPortName(config.Port))
                 {
-                    log.WriteDebugLog(ModbusSample.Properties.Settings.Default.ComName + " 连接:打开串口错误!");
+                    log.WriteDebugLog(config.Port + " 连接:打开串口错误!");
 
                 }
 
-                log.WriteDebugLog(ModbusSample.Properties.Settings.Default.ComName + "连接:" + (vendor.CommIsOk ? "通读正常" : "通读异常"));
+                log.WriteDebugLog(config.Port + "连接:" + (vendor.CommIsOk ? "通读正常" : "通读异常"));
                 Console.InputEncoding = System.Text.Encoding.UTF8;
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -109,7 +111,7 @@ namespace ModbusSample
 
             if (Vendor.ModbusData[Vendor.CurrRunningMotorIndex] != 255)
             {
-                MessageBox.Show("上一次出货任务还未完成，请稍候。");
+                log.WriteDebugLog("上一次出货任务还未完成，请稍候。");
                 return;
             }
 

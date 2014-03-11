@@ -42,7 +42,18 @@ namespace ModbusSample
             return intvalue;
         }
 
-        public void SetNoteValue(bool defaultnote, string p, string key,object value)
+        private string GetPort()
+        {
+            string value = doc.Root.Element("Default").Element("Com").Value;
+            return value;
+        }
+
+        private void SetPort(string com)
+        {
+            doc.Root.Element("Default").Element("Com").Value = com;
+        }
+
+        public void SetNoteValue(bool defaultnote, string p, string key, object value)
         {
             doc.Root.Element(defaultnote ? "Default" : "Instance").Elements("Product").FirstOrDefault((n) =>
             {
@@ -101,6 +112,12 @@ namespace ModbusSample
         }
 
         #endregion
+
+        public string Port
+        {
+            get { return GetPort(); }
+            set { SetPort(value); }
+        }
 
 
     }

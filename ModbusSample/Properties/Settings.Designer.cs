@@ -22,17 +22,5 @@ namespace ModbusSample.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Com1")]
-        public string ComName {
-            get {
-                return ((string)(this["ComName"]));
-            }
-            set {
-                this["ComName"] = value;
-            }
-        }
     }
 }
