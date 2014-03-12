@@ -75,7 +75,7 @@ namespace ModbusSample
                     result = IdleTask;
                 }
                 result();
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
             }
         }
 

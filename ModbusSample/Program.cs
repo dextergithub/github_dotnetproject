@@ -25,7 +25,7 @@ namespace ModbusSample
                 VEMConfigHelper config = VEMConfigHelper.Create();
 
                 string par = System.Environment.CommandLine;
-                if (!string.IsNullOrEmpty(par) && par.IndexOf("ui", StringComparison.OrdinalIgnoreCase) >= 0)
+                if (!string.IsNullOrEmpty(par) && par.IndexOf("show_ui", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
@@ -50,8 +50,8 @@ namespace ModbusSample
                 Task readerTast = Task.Factory.StartNew(() =>
                 {
                     while (true)
-                    {
-                        string txt = Console.ReadLine();
+                    {                      
+                        string txt =Console.In.ReadLine();
                         log.WriteDebugLog("获取指令：" + txt);
                         try
                         {
@@ -112,6 +112,7 @@ namespace ModbusSample
             if (Vendor.ModbusData[Vendor.CurrRunningMotorIndex] != 255)
             {
                 log.WriteDebugLog("上一次出货任务还未完成，请稍候。");
+                Console.WriteLine("上一次出货任务还未完成，请稍候。");
                 return;
             }
 

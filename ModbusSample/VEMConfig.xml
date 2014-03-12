@@ -8,13 +8,13 @@
       <ChannelStart>1</ChannelStart>
       <ChannelEnd>3</ChannelEnd>
       <PerChannel>2</PerChannel>
-      <Current>4</Current>
+      <Current>5</Current>
     </Product>
     <Product ID="B">
       <ChannelStart>5</ChannelStart>
       <ChannelEnd>7</ChannelEnd>
       <PerChannel>6</PerChannel>
-      <Current>8</Current>
+      <Current>12</Current>
     </Product>
   </Instance>
 </VEM>
