@@ -4,17 +4,22 @@
     <Com>Com9</Com>
   </Default>
   <Instance>
-    <Product ID="A">
-      <ChannelStart>1</ChannelStart>
-      <ChannelEnd>3</ChannelEnd>
-      <PerChannel>2</PerChannel>
-      <Current>5</Current>
+    <Product ID="A" Current="3">
+      <Channels />
+      <Channel ID="1" Count="2" IndexS="0" IndexE="1" />
+      <Channel ID="3" Count="1" IndexS="2" IndexE="2" />
+      <Channel ID="5" Count="2" IndexS="3" IndexE="4" />
+      <Channel ID="7" Count="1" IndexS="5" IndexE="5" />
+      <Channel ID="8" Count="1" IndexS="6" IndexE="6" />
     </Product>
-    <Product ID="B">
-      <ChannelStart>5</ChannelStart>
-      <ChannelEnd>7</ChannelEnd>
-      <PerChannel>6</PerChannel>
-      <Current>12</Current>
+    <Product ID="B" Current="2">
+      <Channels />
+      <Channel ID="2" Count="1" IndexS="0" IndexE="0" />
+      <Channel ID="4" Count="2" IndexS="1" IndexE="2" />
+      <Channel ID="6" Count="1" IndexS="3" IndexE="3" />
+      <Channel ID="8" Count="2" IndexS="4" IndexE="5" />
+      <Channel ID="10" Count="1" IndexS="6" IndexE="6" />
+      <Channel ID="8" Count="7" IndexS="7" IndexE="13" />
     </Product>
   </Instance>
 </VEM>

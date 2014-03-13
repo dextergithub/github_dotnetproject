@@ -14,6 +14,10 @@ namespace ModbusSample
     {
 
         public Vendor V = null;
+
+        public List<ChannelInfo> Channels_A = new List<ChannelInfo>();
+
+        List<ChannelInfo> Channels_B = new List<ChannelInfo>();
         public TestForm1()
         {
             InitializeComponent();
@@ -55,34 +59,135 @@ namespace ModbusSample
         private void button3_Click(object sender, EventArgs e)
         {
             VEMConfigHelper config = VEMConfigHelper.Create();
-            config.AChannelEnd = (int)this.Achannelend.Value;
-            config.AChannelStart = (int)this.Achannelstart.Value;
-            config.ACurrent = (int)this.Acurrent.Value;
-            config.APerChannel = (int)this.Aperchannel.Value;
 
-            config.BChannelEnd = (int)this.Bchannelend.Value;
-            config.BChannelStart = (int)this.Bchannelstart.Value;
-            config.BCurrent = (int)this.Bcurrent.Value;
-            config.BPerChannel = (int)this.Bperchannel.Value;
+            config.SetProductAChannels(this.Channels_A);
+            config.SetProductBChannels(this.Channels_B);
+
+            config.ACurrent = (int)this.numericUpDown_A.Value;
+            config.BCurrent = (int)this.numericUpDown_B.Value;
+
             config.Port = port.Text;
             config.Save();
             MessageBox.Show("保存成功！");
 
         }
 
+
+
         private void TestForm1_Load(object sender, EventArgs e)
         {
             VEMConfigHelper config = VEMConfigHelper.Create();
-            this.Achannelend.Value = config.AChannelEnd;
-            this.Achannelstart.Value = config.AChannelStart;
-            this.Acurrent.Value = config.ACurrent;
-            this.Aperchannel.Value = config.APerChannel;
+            this.Channels_A = config.GetProductAChannels();
+            this.Channels_B = config.GetProductBChannels();
+            this.dataGridView_A.AutoGenerateColumns = false;
+            this.dataGridView_B.AutoGenerateColumns = false;
+            this.dataGridView_A.DataSource = this.Channels_A;
+            this.dataGridView_B.DataSource = this.Channels_B;
 
-            this.Bchannelend.Value = config.BChannelEnd;
-            this.Bchannelstart.Value = config.BChannelStart;
-            this.Bcurrent.Value = config.BCurrent;
-            this.Bperchannel.Value = config.BPerChannel;
+            this.numericUpDown_A.Value = config.ACurrent;
+            this.numericUpDown_B.Value = config.BCurrent;
+
             this.port.Text = config.Port;
+
+
+        }
+
+        private void toolStripMenuItem1_Click_Add(object sender, EventArgs e)
+        {
+            try
+            {
+                var viewer = this.contextMenuStrip1.SourceControl as DataGridView;
+                if (viewer != null)
+                {
+                    var name = viewer.Name;
+                    if (name == "dataGridView_A")
+                    {
+                        this.dataGridView_A.DataSource = null;
+                        this.Channels_A.Add(new ChannelInfo());
+                        this.dataGridView_A.DataSource = this.Channels_A;
+                    }
+                    else
+                    {
+                        this.dataGridView_B.DataSource = null;
+                        this.Channels_B.Add(new ChannelInfo());
+                        this.dataGridView_B.DataSource = this.Channels_B;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.log.Error(ex.Message, ex);
+            }
+        }
+        private void toolStripMenuItem2_Click_Remove(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                var viewer = this.contextMenuStrip1.SourceControl as DataGridView;
+                var item = viewer.SelectedRows;
+                var name = viewer.Name;
+
+                if (viewer != null && item != null && item.Count > 0)
+                {
+                    ChannelInfo info = item[0].DataBoundItem as ChannelInfo;
+                    if (info != null)
+                    {
+                        if (name == "dataGridView_A")
+                        {
+                            if (this.Channels_A.Contains(info))
+                            {
+
+                                this.dataGridView_A.DataSource = null;
+                                this.Channels_A.Remove(info);
+                                this.dataGridView_A.DataSource = this.Channels_A;
+                            }
+                        }
+                        else
+                        {
+                            if (this.Channels_B.Contains(info))
+                            {
+                                //this.dataGridView_B.Rows.RemoveAt(item[0].Index);
+                                this.dataGridView_B.DataSource = null;
+                                this.Channels_B.Remove(info);
+                                //this.dataGridView_B.AllowUserToDeleteRows = true;
+                                //(item[0].DataBoundItem as DataRowView).Delete();
+                                // ResetView(this.dataGridView_B);
+                                this.dataGridView_B.DataSource = this.Channels_B;
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.log.Error(ex.Message, ex);
+            }
+        }
+
+        private void ResetView(DataGridView dview)
+        {
+            // 
+            // Column_ID
+            // 
+            this.Column_ID.DataPropertyName = "ID";
+            this.Column_ID.HeaderText = "编号(从0开始)";
+            this.Column_ID.Name = "Column_ID";
+            this.Column_ID.Width = 200;
+
+            dview.Columns.Add(this.Column_ID.Clone() as DataGridViewTextBoxColumn);
+            // 
+            // Column_Count
+            // 
+            this.Column_Count.DataPropertyName = "Count";
+            this.Column_Count.HeaderText = "数量";
+            this.Column_Count.Name = "Column_Count";
+            this.Column_Count.Width = 200;
+            dview.Columns.Add(this.Column_Count.Clone() as DataGridViewTextBoxColumn);
+            dview.AutoGenerateColumns = false;
         }
     }
 }

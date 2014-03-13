@@ -13,5 +13,12 @@ namespace BaseCommon
             return string.Format(str, p);
         }
 
+        public static int TryInt(this string str)
+        {
+            int v = default(int);
+            int.TryParse(str, out v);
+            return v;
+        }
+
     }
 }

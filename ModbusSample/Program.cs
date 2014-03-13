@@ -50,8 +50,8 @@ namespace ModbusSample
                 Task readerTast = Task.Factory.StartNew(() =>
                 {
                     while (true)
-                    {                      
-                        string txt =Console.In.ReadLine();
+                    {
+                        string txt = Console.In.ReadLine();
                         log.WriteDebugLog("获取指令：" + txt);
                         try
                         {
@@ -102,6 +102,8 @@ namespace ModbusSample
         {
             int goodid = -1;
 
+            System.Threading.Thread.Sleep(2000);
+
             if (!GetIndex(Idx, ref  goodid))
             {
                 Console.WriteLine("出货" + Idx + ":" + "失败");
@@ -109,10 +111,16 @@ namespace ModbusSample
                 return;
             }
 
+            if (!Vendor.CommIsOk)
+            {
+                Console.WriteLine("目前系统通讯故障。");
+                log.WriteDebugLog("目前系统通讯故障。");
+                return;
+            }
             if (Vendor.ModbusData[Vendor.CurrRunningMotorIndex] != 255)
             {
-                log.WriteDebugLog("上一次出货任务还未完成，请稍候。");
                 Console.WriteLine("上一次出货任务还未完成，请稍候。");
+                log.WriteDebugLog("上一次出货任务还未完成，请稍候。");
                 return;
             }
 
@@ -128,38 +136,34 @@ namespace ModbusSample
         {
             int channelstart = 0, channelend = 0, current = 0, Per = 0;
             VEMConfigHelper config = VEMConfigHelper.Create();
+            List<ChannelInfo> channnels = new List<ChannelInfo>();
+
+
             if (P == "B")
             {
-                channelstart = config.BChannelStart;
-                channelend = config.BChannelEnd;
                 current = config.BCurrent;
-                Per = config.BPerChannel;
+                channnels = config.GetProductBChannels();
             }
             else if (P == "A")
             {
-                channelstart = config.AChannelStart;
-                channelend = config.AChannelEnd;
                 current = config.ACurrent;
-                Per = config.APerChannel;
+                channnels = config.GetProductAChannels();
             }
 
-
-            int total = ((channelend - channelstart) + 1) * Per;
-
-            int startIndex = channelstart * Per;
-            int endIndex = (channelend + 1) * Per;
-
-            if (current < total - 1)
+            if (channnels != null && channnels.Count > 0)
             {
-                int offset = 0;
-                offset = (current + 1) / Per;
 
-                Index = startIndex + offset;
-                if (Index > endIndex)
+                var chan = channnels.First(p => { return p.IndexE >= current && p.IndexS <= current; });
+                if (chan == null)
                 {
                     Index = -1;
                     return false;
                 }
+                else
+                {
+                    Index = chan.ID;
+                }
+
                 if (P == "A")
                 {
                     config.ACurrent = current + 1;
